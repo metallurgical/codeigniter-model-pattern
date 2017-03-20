@@ -101,7 +101,7 @@ class User_model extends Model_app {
 
 We'll used extended/child class instead of calling base class directly. In this case is our `User_model.php`. This is only an example, you can have your own model that extend the base class.
 
-#### a) insert( $arrayData [,$table] )
+### a) insert( $arrayData [,$table] )
 Insert data into table
 
  **Parameters**
@@ -127,7 +127,7 @@ $result = $this->user_model->insert( $arrayData, $table );
 ```
 
 
-#### b) insert_batch( $arrayData [,$table] )
+### b) insert_batch( $arrayData [,$table] )
 Insert data into table batch by batch
 
  **Parameters**
@@ -161,7 +161,7 @@ $result = $this->user_model->insert_batch( $arrayData, $table );
 ```
 
 
-#### c) delete( $where [,$table] )
+### c) delete( $where [,$table] )
 Delete data from table either single or multiple table
 
  **Parameters**
@@ -186,7 +186,7 @@ $table = array('users','users_booking','users_history');
 $this->user_model->delete( $where, $table )
 ```
 
-#### d) clear( [$table] )
+### d) clear( [$table] )
 Will empty the data inside database's table. Same like @truncate method except this use DELETE keyword
 
  **Parameters**
@@ -208,7 +208,7 @@ $table ='users_contact';
 $this->user_model->clear( $table );
 ```
 
-#### e) truncate( [$table] )
+### e) truncate( [$table] )
 Will empty the data inside database's table. Same like @clear method except this use TRUNCATE keyword
 
  **Parameters**
@@ -230,7 +230,7 @@ $table ='users_contact';
 $this->user_model->truncate( $table );
 ```
 
-#### f) getLastData( $fieldToOrder [, $where, $fieldToSelect, $table] )
+### f) getLastData( $fieldToOrder [, $where, $fieldToSelect, $table] )
 Get the last data from table
 
  **Parameters**
@@ -265,7 +265,7 @@ $where = ['email' => 'norlihazmey89@gmail.com' ];
 $this->model_app->getLastData( $fieldToOrder, $where );
 ```
 
-#### g) get_all_rows( [ $where, $fields, $table, $join, $orderBy, $groupBy, $limit  ] )
+### g) get_all_rows( [ $where, $fields, $table, $join, $orderBy, $groupBy, $limit  ] )
 Get data more than one rows from database's table. This method accept various sql keyword to perform any database operation. You can either use all where, join, like, family etc that exist on codeigniter's quiry builder.
 
  **Parameters**
