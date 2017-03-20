@@ -208,7 +208,7 @@ class Model_app extends CI_Model {
      *      $fieldToSelect = 'name, email';
      *      $this->model_app->getLastData( $fieldToOrder, $field, $table );
      */     
-    function getLastData( $fieldToOrder, $fieldToSelect = false, $table = false ) {
+    function getLastData( $fieldToOrder, $where = false, $fieldToSelect = false, $table = false ) {
 
         if ( $fieldToSelect ) {
              $column = $fieldToSelect;
@@ -218,6 +218,10 @@ class Model_app extends CI_Model {
         }
 
         $this->db->select( $column );
+
+        if ( $where ) {
+            $this->db->where( $where );
+        }
 
         if ( !$table )
             $this->db->from( $this->table );
