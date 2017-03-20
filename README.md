@@ -876,7 +876,7 @@ $table = 'users';
 $this->user_model->or_where_in( $arrValue, $table );
 ```
 
-### w) where_not_in( $arrValue [, $table ] )
+### w) where_not_in( $arrValue [, $table, $join ] )
 Get result set of data with AND condition using where not in which accept an array as value.
 
  **Parameters** 
