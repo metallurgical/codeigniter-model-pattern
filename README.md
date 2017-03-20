@@ -59,12 +59,12 @@ class User_model extends Model_app {
 # Availables Function/Options
 
 1. [insert](https://github.com/metallurgical/codeigniter-model-pattern/blob/master/README.md#1-insert)
-2. [insert_batch]()
-3. [delete]()
-4. [clear]()
-5. [truncate]()
-6. [getLastData]()
-7. [get_all_rows]()
+2. [insert_batch](https://github.com/metallurgical/codeigniter-model-pattern/blob/master/README.md#b-insert_batch-arraydata-table-)
+3. [delete](https://github.com/metallurgical/codeigniter-model-pattern/blob/master/README.md#c-delete-where-table-)
+4. [clear](https://github.com/metallurgical/codeigniter-model-pattern/blob/master/README.md#d-clear-table-)
+5. [truncate](https://github.com/metallurgical/codeigniter-model-pattern/blob/master/README.md#e-truncate-table-)
+6. [getLastData](https://github.com/metallurgical/codeigniter-model-pattern/blob/master/README.md#f-getlastdata-fieldtoorder--where-fieldtoselect-table-)
+7. [get_all_rows](https://github.com/metallurgical/codeigniter-model-pattern/blob/master/README.md#g-get_all_rows--where-fields-table-join-orderby-groupby-limit---)
 8. [get_specified_row]()
 9. [update]()
 10. [update_batch]()
@@ -247,7 +247,7 @@ Single array key-value paired if found, EMPTY otherwise
 ```Php
 // get the last data and include all column desc by id 
 $fieldToOrder = 'id';
-$this->model_app->getLastData( $fieldToOrder );
+$this->user_model->getLastData( $fieldToOrder );
 
  -----------------------or---------------------------------
  
@@ -255,14 +255,14 @@ $this->model_app->getLastData( $fieldToOrder );
 $table ='users_contact';
 $fieldToOrder = 'id';
 $fieldToSelect = 'name, email';
-$this->model_app->getLastData( $fieldToOrder, $field, $table );
+$this->user_model->getLastData( $fieldToOrder, $field, $table );
 
  -----------------------or---------------------------------
  
 // get the last data using condition column desc by id 
 $fieldToOrder = 'id';
 $where = ['email' => 'norlihazmey89@gmail.com' ];
-$this->model_app->getLastData( $fieldToOrder, $where );
+$this->user_model->getLastData( $fieldToOrder, $where );
 ```
 
 ### g) get_all_rows( [ $where, $fields, $table, $join, $orderBy, $groupBy, $limit  ] )
@@ -270,14 +270,66 @@ Get data more than one rows from database's table. This method accept various sq
 
  **Parameters**
  
- 1. `$fieldToOrder` = string REQUIRED. Which columns to make ordering.
- 2. `$where` = string|array OPTIONAL. sql string or key-value paired array.
- 2. `$fieldToSelect` = string|array OPTIONAL. Columns to select. Select all column if not specified.
- 3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 1. `$where` = array OPTIONAL. Perform various where condition on single query. Availables where condition can be used are:
+    - where :
+      - `array( 'where' => [ 'id !=' => 1, 'email =' => 'emi@emi.com' ] )`
+    - where_in
+      - `array( 'where_in' => [ 'id'=> [1, 2], 'email' => ['emi@emi.com'] ] )`
+    - or_where_in
+      - `array( 'or_where_in' => [ 'id'=> [1, 2], 'email' => ['emi@emi.com'] ] )`
+    - where_not_in
+      - `array( 'where_not_in' => [ 'id'=> [1, 2], 'email' => ['emi@emi.com'] ] )`
+    - or_where_not_in
+      - `array( 'or_where_not_in' => [ 'id'=> [1, 2], 'email' => ['emi@emi.com'] ] )`
+    - or_where
+      - `array( 'or_where' => [ 'id !=' => 1, 'email =' => 'emi@emi.com' ] )`
+    - having
+      - `array( 'having' => [ 'id !=' => 1, 'email =' => 'emi@emi.com' ] )`
+    - or_having
+      - `array( 'or_having' => [ 'id !=' => 1, 'email =' => 'emi@emi.com' ] )`
+    - like
+      - `array( 'like' => [ 'name' => 'emi', 'email' => 'emi@emi.com' ] )`
+    - like_before
+      - `array( 'like_before' => [ 'name' => 'emi', 'email' => 'emi@emi.com' ] )`
+    - like_after
+      - `array( 'like_after' => [ 'name' => 'emi', 'email' => 'emi@emi.com' ] )`
+    - or_like
+      - `array( 'or_like' => [ 'name' => 'emi', 'email' => 'emi@emi.com' ] )`
+    - or_like_before
+      - `array( 'or_like_before' => [ 'name' => 'emi', 'email' => 'emi@emi.com' ] )`
+    - or_like_after
+      - `array( 'or_like_after' => [ 'name' => 'emi', 'email' => 'emi@emi.com' ] )`
+    - not_like
+      - `array( 'not_like' => [ 'name' => 'emi', 'email' => 'emi@emi.com' ] )`
+    - not_like_before
+      - `array( 'not_like_before' => [ 'name' => 'emi', 'email' => 'emi@emi.com' ] )`
+    - not_like_after
+      - `array( 'not_like_after' => [ 'name' => 'emi', 'email' => 'emi@emi.com' ] )`
+    - or_not_like
+      - `array( 'or_not_like' => [ 'name' => 'emi', 'email' => 'emi@emi.com' ] )`
+    - or_not_like_before
+      - `array( 'or_not_like_before' => [ 'name' => 'emi', 'email' => 'emi@emi.com' ] )`
+    - or_not_like_after
+      - `array( 'or_not_like_after' => [ 'name' => 'emi', 'email' => 'emi@emi.com' ] )`
+    
+ 2. `$fields` = string|array OPTIONAL. sql string or key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL.  key value paired array. Available join can be used are :
+    - inner
+    - left
+    - right
+    - left outer
+    - right outer
+    - join
+    - outer
+    - inner
+ 4. `$orderBy` = string|array OPTIONAL. Which columns need to make ordering
+ 5. `$groupBy` = string|array OPTIOANL. Which columns need grouping
+ 6. `$limit` = string|array OPTIOANL. Set the limit or offset result set
 
 **Return**
 
-Single array key-value paired if found, EMPTY otherwise
+Array collection. Collection of dataset coming/fetching from database's table with one or more rows are returned
 
 ```Php
 // get the last data and include all column desc by id 
