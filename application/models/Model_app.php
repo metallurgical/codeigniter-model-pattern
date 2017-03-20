@@ -206,9 +206,9 @@ class Model_app extends CI_Model {
      *      $table ='users';
      *      $fieldToOrder = 'id';
      *      $fieldToSelect = 'name, email';
-     *      $this->model_app->getLastData( $fieldToOrder, $field, $table );
+     *      $this->model_app->get_last_data( $fieldToOrder, $field, $table );
      */     
-    function getLastData( $fieldToOrder, $where = false, $fieldToSelect = false, $table = false ) {
+    function get_last_data( $fieldToOrder, $where = false, $fieldToSelect = false, $table = false ) {
 
         if ( $fieldToSelect ) {
              $column = $fieldToSelect;
