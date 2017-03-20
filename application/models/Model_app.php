@@ -357,7 +357,7 @@ class Model_app extends CI_Model {
     }
     // source
     // http://stackoverflow.com/questions/173400/how-to-check-if-php-array-is-associative-or-sequential
-    function isAssoc ( $arr ) {
+    private function isAssoc ( $arr ) {
         return array_keys($arr) !== range(0, count($arr) - 1);
     }
     /**
@@ -481,7 +481,7 @@ class Model_app extends CI_Model {
            
     }
 
-    function complexQueries ( $where = false, $fields = false, $table = false, $join = false, $orderBy = false, $groupBy = false, $limit = false ) {
+    private function complexQueries ( $where = false, $fields = false, $table = false, $join = false, $orderBy = false, $groupBy = false, $limit = false ) {
 
         if ( $fields ) {
             $this->db->select( $fields );
@@ -545,35 +545,7 @@ class Model_app extends CI_Model {
         
         }
 
-        if ( $join ) {
-
-            foreach( $join as $key => $value ) {
-    
-                if ( $key == 'left' )
-                    $position = 'left';
-                elseif ( $key == 'right' )
-                    $position = 'right';
-                elseif ( $key == 'outer' )
-                    $position = 'outer';
-                elseif ( $key == 'inner' )
-                    $position = 'inner';
-                elseif ( $key == 'left outer' )
-                    $position = 'left outer';
-                elseif ( $key == 'right outer' )
-                    $position = 'right outer';
-                else
-                    $position = 'none';
-
-                foreach( $value as $key2 => $value2 ) {
-
-                    if ( $position == 'none' )                        
-                        $this->db->join( $key2, $value2 );
-                    else
-                        $this->db->join( $key2, $value2, $position );
-                }
-                
-            }
-        }
+        if ( $join ) $this->joinTable( $join );
               
         $query = $this->db->get();
 
@@ -692,6 +664,44 @@ class Model_app extends CI_Model {
             return FALSE;
 
     }
+
+    private function joinTable ( $join ) {
+
+        if ( $join ) {
+
+            $query = $this->db;
+
+            foreach( $join as $key => $value ) {
+    
+                if ( $key == 'left' )
+                    $position = 'left';
+                elseif ( $key == 'right' )
+                    $position = 'right';
+                elseif ( $key == 'outer' )
+                    $position = 'outer';
+                elseif ( $key == 'inner' )
+                    $position = 'inner';
+                elseif ( $key == 'left outer' )
+                    $position = 'left outer';
+                elseif ( $key == 'right outer' )
+                    $position = 'right outer';
+                else
+                    $position = 'none';
+
+                foreach( $value as $key2 => $value2 ) {
+
+                    if ( $position == 'none' )                        
+                        $query->join( $key2, $value2 );
+                    else
+                        $query->join( $key2, $value2, $position );
+                }
+                
+            }
+
+            return $query;
+
+        }
+    }
     /**
      * Select maximun data
      * @param  [string]  $fields [fields's for finding max]
@@ -701,21 +711,27 @@ class Model_app extends CI_Model {
      * Example :
      *     $fields = 'quantity';
      *     $table = 'booking';
-     *     $result = $this->model_app->min( $fields, $table );
+     *     $result = $this->model_app->max( $fields, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
+     *
+     * Example : Using Where
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function max ( $fields, $where = false, $table = false ) {
+    function max ( $fields, $where = false, $table = false, $join = false ) {
 
         $this->db->select_max( $fields );
 
-        if ( $where ) {
+        if ( $where )
             $this->db->where( $where );
-        }
+
+        if ( $join ) $this->joinTable( $join );
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->row_array();
 
@@ -730,20 +746,26 @@ class Model_app extends CI_Model {
      *     $fields = 'quantity';
      *     $table = 'booking';
      *     $result = $this->model_app->min( $fields, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
+     *
+     * Example : Using Where
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function min ( $fields, $where = false, $table = false ) {
+    function min ( $fields, $where = false, $table = false, $join = false  ) {
 
         $this->db->select_min( $fields );
 
-        if ( $where ) {
+        if ( $where )
             $this->db->where( $where );
-        }
+
+        if ( $join ) $this->joinTable( $join );
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->row_array();
 
@@ -758,20 +780,26 @@ class Model_app extends CI_Model {
      *     $fields = 'quantity';
      *     $table = 'booking';
      *     $result = $this->model_app->avg( $fields, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
+     *
+     * Example : Using Where
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function avg ( $fields, $where = false, $table = false ) {
+    function avg ( $fields, $where = false, $table = false, $join = false  ) {
 
         $this->db->select_avg( $fields );
 
-        if ( $where ) {
+        if ( $where )
             $this->db->where( $where );
-        }
+
+        if ( $join ) $this->joinTable( $join );
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->row_array();
 
@@ -786,20 +814,26 @@ class Model_app extends CI_Model {
      *     $fields = 'quantity';
      *     $table = 'booking';
      *     $result = $this->model_app->sum( $fields, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
+     *
+     * Example : Using Where
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function sum ( $fields, $where = false, $table = false ) {
+    function sum ( $fields, $where = false, $table = false, $join = false  ) {
 
         $this->db->select_sum( $fields );
 
-        if ( $where ) {
+        if ( $where )
             $this->db->where( $where );
-        }
+
+        if ( $join ) $this->joinTable( $join );
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->row_array();
 
@@ -814,11 +848,19 @@ class Model_app extends CI_Model {
      *     $where = array('id' => 1);
      *     $table = 'groups';
      *     $this->model_app->count( $where, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
+     *
+     * Example : Using Where
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function count ( $where = false, $table = false ) {
+    function count ( $where = false, $table = false, $join = false  ) {
 
         if ( $where )
             $this->db->where( $where );
+
+        if ( $join ) $this->joinTable( $join );
 
         if ( !$table )
             $this->db->from( $this->table ); 
@@ -838,16 +880,20 @@ class Model_app extends CI_Model {
      *     $arrValue = array('id !=' => 1, 'email =' => 'emi@emi.com' );
      *     $table = 'users';
      *     $this->model_app->where( $arrValue, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function where ( $arrValue, $table = false ) {
+    function where ( $arrValue, $table = false, $join = false  ) {
          
+        if ( $join ) $this->joinTable( $join );
+
         $this->db->where( $arrValue );
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->result_array();
     }
@@ -861,16 +907,20 @@ class Model_app extends CI_Model {
      *     $arrValue = array('id !=' => 1, 'email =' => 'emi@emi.com' );
      *     $table = 'users';
      *     $this->model_app->or_where( $arrValue, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function or_where ( $arrValue, $table = false ) {
+    function or_where ( $arrValue, $table = false, $join = false  ) {
          
+        if ( $join ) $this->joinTable( $join );
+
         $this->db->or_where( $arrValue );
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->result_array();
     }
@@ -884,16 +934,20 @@ class Model_app extends CI_Model {
      *     $arrValue = array('id !=' => 1, 'email =' => 'emi@emi.com' );
      *     $table = 'users';
      *     $this->model_app->having( $arrValue, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function having ( $arrValue, $table = false ) {
+    function having ( $arrValue, $table = false, $join = false  ) {
          
+        if ( $join ) $this->joinTable( $join );
+
         $this->db->having( $arrValue );
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->result_array();
     }
@@ -907,16 +961,20 @@ class Model_app extends CI_Model {
      *     $arrValue = array('id !=' => 1, 'email =' => 'emi@emi.com' );
      *     $table = 'users';
      *     $this->model_app->or_having( $arrValue, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function or_having ( $arrValue, $table = false ) {
+    function or_having ( $arrValue, $table = false, $join = false  ) {
          
+        if ( $join ) $this->joinTable( $join );
+
         $this->db->or_having( $arrValue );
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->result_array();
     }
@@ -930,8 +988,13 @@ class Model_app extends CI_Model {
      *     $arrValue = array( 'id'=> [1, 2], 'email' => ['admin@admin.com'] );
      *     $table = 'users';
      *     $this->model_app->where_in( $arrValue, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function where_in ( $arrValue, $table = false ) {        
+    function where_in ( $arrValue, $table = false, $join = false  ) {        
+
+        if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
             $this->db->where_in( $key, $value );
@@ -939,9 +1002,8 @@ class Model_app extends CI_Model {
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->result_array();
     }
@@ -955,8 +1017,13 @@ class Model_app extends CI_Model {
      *     $arrValue = array( 'id'=> [1, 2], 'email' => ['admin@admin.com'] );
      *     $table = 'users';
      *     $this->model_app->or_where_in( $arrValue, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function or_where_in ( $arrValue, $table = false ) {        
+    function or_where_in ( $arrValue, $table = false, $join = false  ) {        
+
+        if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
             $this->db->or_where_in( $key, $value );
@@ -964,9 +1031,8 @@ class Model_app extends CI_Model {
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->result_array();
     }
@@ -980,8 +1046,13 @@ class Model_app extends CI_Model {
      *     $arrValue = array( 'id'=> [1, 2], 'email' => ['admin@admin.com'] );
      *     $table = 'users';
      *     $this->model_app->where_not_in( $arrValue, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function where_not_in ( $arrValue, $table = false ) {        
+    function where_not_in ( $arrValue, $table = false, $join = false  ) {        
+
+        if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
             $this->db->where_not_in( $key, $value );
@@ -989,9 +1060,8 @@ class Model_app extends CI_Model {
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->result_array();
     }
@@ -1005,8 +1075,13 @@ class Model_app extends CI_Model {
      *     $arrValue = array( 'id'=> [1, 2], 'email' => ['admin@admin.com'] );
      *     $table = 'users';
      *     $this->model_app->or_where_not_in( $arrValue, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function or_where_not_in ( $arrValue, $table = false ) {        
+    function or_where_not_in ( $arrValue, $table = false, $join = false  ) {        
+
+        if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
             $this->db->or_where_not_in( $key, $value );
@@ -1014,9 +1089,8 @@ class Model_app extends CI_Model {
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->result_array();
     }
@@ -1031,8 +1105,13 @@ class Model_app extends CI_Model {
      *     $arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
      *     $table = 'users';
      *     $this->model_app->like( $arrValue, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function like ( $arrValue, $table = false ) {        
+    function like ( $arrValue, $table = false, $join = false  ) {        
+
+        if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
             $this->db->like( $key, $value );
@@ -1040,9 +1119,8 @@ class Model_app extends CI_Model {
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->result_array();
     }
@@ -1057,8 +1135,13 @@ class Model_app extends CI_Model {
      *     $arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
      *     $table = 'users';
      *     $this->model_app->like_before( $arrValue, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function like_before ( $arrValue, $table = false ) {        
+    function like_before ( $arrValue, $table = false, $join = false  ) {        
+
+        if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
             $this->db->like( $key, $value, 'before' );
@@ -1066,9 +1149,8 @@ class Model_app extends CI_Model {
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->result_array();
     }
@@ -1083,8 +1165,13 @@ class Model_app extends CI_Model {
      *     $arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
      *     $table = 'users';
      *     $this->model_app->like_after( $arrValue, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function like_after ( $arrValue, $table = false ) {        
+    function like_after ( $arrValue, $table = false, $join = false  ) {        
+
+        if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
             $this->db->like( $key, $value, 'after' );
@@ -1092,9 +1179,8 @@ class Model_app extends CI_Model {
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->result_array();
     }
@@ -1109,8 +1195,13 @@ class Model_app extends CI_Model {
      *     $arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
      *     $table = 'users';
      *     $this->model_app->or_like( $arrValue, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function or_like ( $arrValue, $table = false ) {        
+    function or_like ( $arrValue, $table = false, $join = false  ) {        
+
+        if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
             $this->db->or_like( $key, $value );
@@ -1118,9 +1209,8 @@ class Model_app extends CI_Model {
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->result_array();
     }
@@ -1135,8 +1225,13 @@ class Model_app extends CI_Model {
      *     $arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
      *     $table = 'users';
      *     $this->model_app->or_like_before( $arrValue, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function or_like_before ( $arrValue, $table = false ) {        
+    function or_like_before ( $arrValue, $table = false, $join = false  ) {        
+
+        if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
             $this->db->or_like( $key, $value, 'before' );
@@ -1144,9 +1239,8 @@ class Model_app extends CI_Model {
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->result_array();
     }
@@ -1161,8 +1255,13 @@ class Model_app extends CI_Model {
      *     $arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
      *     $table = 'users';
      *     $this->model_app->or_like_after( $arrValue, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function or_like_after ( $arrValue, $table = false ) {        
+    function or_like_after ( $arrValue, $table = false, $join = false  ) {        
+
+        if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
             $this->db->or_like( $key, $value, 'after' );
@@ -1170,9 +1269,8 @@ class Model_app extends CI_Model {
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->result_array();
     }
@@ -1187,8 +1285,13 @@ class Model_app extends CI_Model {
      *     $arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
      *     $table = 'users';
      *     $this->model_app->not_like( $arrValue, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function not_like ( $arrValue, $table = false ) {        
+    function not_like ( $arrValue, $table = false, $join = false  ) {        
+
+        if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
             $this->db->not_like( $key, $value );
@@ -1196,9 +1299,8 @@ class Model_app extends CI_Model {
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->result_array();
     }
@@ -1213,8 +1315,13 @@ class Model_app extends CI_Model {
      *     $arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
      *     $table = 'users';
      *     $this->model_app->not_like_before( $arrValue, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function not_like_before ( $arrValue, $table = false ) {        
+    function not_like_before ( $arrValue, $table = false, $join = false  ) {        
+
+        if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
             $this->db->not_like( $key, $value, 'before' );
@@ -1222,9 +1329,8 @@ class Model_app extends CI_Model {
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
+        else
             $query = $this->db->get( $table ); 
-        }
         
         return $query->result_array();
     }
@@ -1239,8 +1345,13 @@ class Model_app extends CI_Model {
      *     $arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
      *     $table = 'users';
      *     $this->model_app->not_like_after( $arrValue, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function not_like_after ( $arrValue, $table = false ) {        
+    function not_like_after ( $arrValue, $table = false, $join = false  ) {        
+
+        if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
             $this->db->not_like( $key, $value, 'after' );
@@ -1248,9 +1359,8 @@ class Model_app extends CI_Model {
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->result_array();
     }
@@ -1265,8 +1375,13 @@ class Model_app extends CI_Model {
      *     $arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
      *     $table = 'users';
      *     $this->model_app->or_not_like( $arrValue, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function or_not_like ( $arrValue, $table = false ) {        
+    function or_not_like ( $arrValue, $table = false, $join = false  ) {        
+
+        if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
             $this->db->or_not_like( $key, $value );
@@ -1274,9 +1389,8 @@ class Model_app extends CI_Model {
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->result_array();
     }
@@ -1291,8 +1405,13 @@ class Model_app extends CI_Model {
      *     $arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
      *     $table = 'users';
      *     $this->model_app->or_not_like_before( $arrValue, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function or_not_like_before ( $arrValue, $table = false ) {        
+    function or_not_like_before ( $arrValue, $table = false, $join = false  ) {        
+
+        if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
             $this->db->or_not_like( $key, $value, 'before' );
@@ -1300,9 +1419,8 @@ class Model_app extends CI_Model {
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->result_array();
     }
@@ -1317,8 +1435,13 @@ class Model_app extends CI_Model {
      *     $arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
      *     $table = 'users';
      *     $this->model_app->or_not_like_after( $arrValue, $table );
+     *
+     * Example : Using Join
+     *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
-    function or_not_like_after ( $arrValue, $table = false ) {        
+    function or_not_like_after ( $arrValue, $table = false, $join = false ) {        
+
+        if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
             $this->db->or_not_like( $key, $value, 'after' );
@@ -1326,9 +1449,8 @@ class Model_app extends CI_Model {
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
-        else {
-            $query = $this->db->get( $table ); 
-        }
+        else
+            $query = $this->db->get( $table );
         
         return $query->result_array();
     }
