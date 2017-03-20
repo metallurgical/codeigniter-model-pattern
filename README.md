@@ -454,7 +454,7 @@ Array collection. Collection of dataset coming/fetching from database's table wi
 
 ### h) get_specified_row( [ $where, $fields, $table, $join, $orderBy, $groupBy, $limit ] )
 
-Get ONLY one rows from database's table. This method accept various sql keyword to perform any database operation. You can either use all where, join, like, family etc that exist on codeigniter's quiry builder. 
+Get ONLY one row from database's table. This method accept various sql keyword to perform any database operation. You can either use all where, join, like, family etc that exist on codeigniter's quiry builder. 
 
  **Parameters**
  
