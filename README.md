@@ -57,3 +57,46 @@ class User_model extends Model_app {
 
 
 # Availables Function/Options
+
+1. [insert]()
+2. [insert_batch]()
+3. [delete]()
+4. [clear]()
+5. [truncate]()
+6. [getLastData]()
+7. [get_all_rows]()
+8. [get_specified_row]()
+9. [update]()
+10. [update_batch]()
+11. [replace]()
+12. [max]()
+13. [min]()
+14. [avg]()
+16. [sum]()
+17. [count]()
+18. [where]()
+19. [or_where]()
+20. [having]()
+21. [or_having]()
+22. [where_in]()
+23. [or_where_in]()
+24. [where_not_in]()
+25. [or_where_not_in]()
+26. [like]()
+27. [like_before]()
+28. [like_after]()
+29. [or_like]()
+30. [or_like_before]()
+31. [or_like_after]()
+32. [not_like]()
+33. [not_like_before]()
+34. [not_like_after]()
+35. [or_not_like]()
+36. [or_not_like_before]()
+37. [or_not_like_after]()
+38. [display_message]()
+48. Will coming more soon...
+
+# Usage Example
+
+## 1. insert
