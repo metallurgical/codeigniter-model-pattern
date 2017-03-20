@@ -314,8 +314,6 @@ Get data more than one rows from database's table. This method accept various sq
  2. `$fields` = string|array OPTIONAL. sql string or key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
  3. `$join` = array OPTIONAL.  key value paired array. Available join can be used are :
-    - inner
-      - `array('join' => [ 'users_groups' => 'users.id = users_groups.user_id',...more ] )`
     - left
       - `array('left' => [ 'users_groups' => 'users.id = users_groups.user_id',...more ] )`
     - right
