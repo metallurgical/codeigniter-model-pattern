@@ -652,6 +652,571 @@ $table = 'users_contact';
 $result = $this->user_model->avg( $fields, $where, $table );
 ```
 
+### o) sum( $fields [, $where, $table ] )
+Get sum of value from certain field/column
+
+ **Parameters**
+ 
+ 1. `$fields` = string REQUIRED. Field/column's name
+ 2. `$where` = string|array OPTIONAL. Key-value paired array.
+ 3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return single row result array, EMPTY otherwise
+
+```Php
+// without condition
+$fields = 'quantity';
+$result = $this->user_model->sum( $fields );
+
+-----------------------or------------------------
+
+// with condition
+$fields = 'quantity';
+$where = ['age' => 50];
+$result = $this->user_model->sum( $fields, $where );
+
+-----------------------or------------------------
+
+// with table's name
+$fields = 'quantity';
+$where = ['age' => 50];
+$table = 'users_contact';
+$result = $this->user_model->sum( $fields, $where, $table );
+```
+
+### p) count( [ $where, $table ] )
+Get average value from certain field/column
+
+ **Parameters** 
+ 
+ 1. `$where` = string|array OPTIONAL. Key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return integet number. 0 if no data found, 1 or > if found.
+
+```Php
+// without condition
+$this->model_app->count();
+
+-----------------------or------------------------
+
+// with condition
+$where = array('id' => 1);
+$this->model_app->count( $where );
+
+-----------------------or------------------------
+
+// with table's name
+$where = array('id' => 1);
+$table = 'groups';
+$this->model_app->count( $where, $table );
+```
+
+### q) where( $arrValue [, $table ] )
+Get result set of data with AND condition
+
+ **Parameters** 
+ 
+ 1. `$arrValue` = string|array REQUIRED. Key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return array collection of data with more than single rows, EMPTY otherwise
+
+```Php
+// without table
+$arrValue = array('id !=' => 1, 'email =' => 'emi@emi.com' );
+$this->user_model->where( $arrValue );
+
+-----------------------or------------------------
+
+// with table's name
+$arrValue = array('id !=' => 1, 'email =' => 'emi@emi.com' );
+$table = 'users';
+$this->user_model->where( $arrValue, $table );
+```
+
+### r) or_where( $arrValue [, $table ] )
+Get result set of data with OR condition
+
+ **Parameters** 
+ 
+ 1. `$arrValue` = string|array REQUIRED. Key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return array collection of data with more than single rows, EMPTY otherwise
+
+```Php
+// without table
+$arrValue = array('id !=' => 1, 'email =' => 'emi@emi.com' );
+$this->user_model->or_where( $arrValue );
+
+-----------------------or------------------------
+
+// with table's name
+$arrValue = array('id !=' => 1, 'email =' => 'emi@emi.com' );
+$table = 'users';
+$this->user_model->or_where( $arrValue, $table );
+```
+
+### s) having( $arrValue [, $table ] )
+Get result set of data with AND condition using having. Identical to @where method
+
+ **Parameters** 
+ 
+ 1. `$arrValue` = string|array REQUIRED. Key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return array collection of data with more than single rows, EMPTY otherwise
+
+```Php
+// without table
+$arrValue = array('id !=' => 1, 'email =' => 'emi@emi.com' );
+$this->user_model->having( $arrValue );
+
+-----------------------or------------------------
+
+// with table's name
+$arrValue = array('id !=' => 1, 'email =' => 'emi@emi.com' );
+$table = 'users';
+$this->user_model->having( $arrValue, $table );
+```
+
+### t) or_having( $arrValue [, $table ] )
+Get result set of data with OR condition using having. Identical to @or_where method
+
+ **Parameters** 
+ 
+ 1. `$arrValue` = string|array REQUIRED. Key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return array collection of data with more than single rows, EMPTY otherwise
+
+```Php
+// without table
+$arrValue = array('id !=' => 1, 'email =' => 'emi@emi.com' );
+$this->user_model->or_having( $arrValue );
+
+-----------------------or------------------------
+
+// with table's name
+$arrValue = array('id !=' => 1, 'email =' => 'emi@emi.com' );
+$table = 'users';
+$this->user_model->or_having( $arrValue, $table );
+```
+
+### u) where_in( $arrValue [, $table ] )
+Get result set of data with AND condition using where in which accept an array as value.
+
+ **Parameters** 
+ 
+ 1. `$arrValue` = string|array REQUIRED. Key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return array collection of data with more than single rows, EMPTY otherwise
+
+```Php
+// without table
+$arrValue = array( 'id'=> [1, 2], 'email' => ['admin@admin.com'] );
+$this->user_model->or_having( $arrValue );
+
+-----------------------or------------------------
+
+// with table's name
+$arrValue = array( 'id'=> [1, 2], 'email' => ['admin@admin.com'] );
+$table = 'users';
+$this->user_model->or_having( $arrValue, $table );
+```
+
+### v) or_where_in( $arrValue [, $table ] )
+Get result set of data with OR condition using where in which accept an array as value.
+
+ **Parameters** 
+ 
+ 1. `$arrValue` = string|array REQUIRED. Key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return array collection of data with more than single rows, EMPTY otherwise
+
+```Php
+// without table
+$arrValue = array( 'id'=> [1, 2], 'email' => ['admin@admin.com'] );
+$this->user_model->or_where_in( $arrValue );
+
+-----------------------or------------------------
+
+// with table's name
+$arrValue = array( 'id'=> [1, 2], 'email' => ['admin@admin.com'] );
+$table = 'users';
+$this->user_model->or_where_in( $arrValue, $table );
+```
+
+### w) where_not_in( $arrValue [, $table ] )
+Get result set of data with AND condition using where not in which accept an array as value.
+
+ **Parameters** 
+ 
+ 1. `$arrValue` = string|array REQUIRED. Key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return array collection of data with more than single rows, EMPTY otherwise
+
+```Php
+// without table
+$arrValue = array( 'id'=> [1, 2], 'email' => ['admin@admin.com'] );
+$this->user_model->where_not_in( $arrValue );
+
+-----------------------or------------------------
+
+// with table's name
+$arrValue = array( 'id'=> [1, 2], 'email' => ['admin@admin.com'] );
+$table = 'users';
+$this->user_model->where_not_in( $arrValue, $table );
+```
+
+### x) or_where_not_in( $arrValue [, $table ] )
+Get result set of data with OR condition using where not in which accept an array as value.
+
+ **Parameters** 
+ 
+ 1. `$arrValue` = string|array REQUIRED. Key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return array collection of data with more than single rows, EMPTY otherwise
+
+```Php
+// without table
+$arrValue = array( 'id'=> [1, 2], 'email' => ['admin@admin.com'] );
+$this->user_model->or_where_not_in( $arrValue );
+
+-----------------------or------------------------
+
+// with table's name
+$arrValue = array( 'id'=> [1, 2], 'email' => ['admin@admin.com'] );
+$table = 'users';
+$this->user_model->or_where_not_in( $arrValue, $table );
+```
+
+
+### y) like( $arrValue [, $table ] )
+Get result set of data with AND condition using like clause with placing % both left and right.
+
+ **Parameters** 
+ 
+ 1. `$arrValue` = string|array REQUIRED. Key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return array collection of data with more than single rows, EMPTY otherwise
+
+```Php
+// without table
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$this->user_model->or_where_not_in( $arrValue );
+
+-----------------------or------------------------
+
+// with table's name
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$table = 'users';
+$this->user_model->or_where_not_in( $arrValue, $table );
+```
+
+### z) like_before( $arrValue [, $table ] )
+Get result set of data with AND condition using like clause with placing % only left side.
+
+ **Parameters** 
+ 
+ 1. `$arrValue` = string|array REQUIRED. Key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return array collection of data with more than single rows, EMPTY otherwise
+
+```Php
+// without table
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$this->user_model->like_before( $arrValue );
+
+-----------------------or------------------------
+
+// with table's name
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$table = 'users';
+$this->user_model->like_before( $arrValue, $table );
+```
+
+### aa) like_after( $arrValue [, $table ] )
+Get result set of data with AND condition using like clause with placing % only right side.
+
+ **Parameters** 
+ 
+ 1. `$arrValue` = string|array REQUIRED. Key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return array collection of data with more than single rows, EMPTY otherwise
+
+```Php
+// without table
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$this->user_model->like_after( $arrValue );
+
+-----------------------or------------------------
+
+// with table's name
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$table = 'users';
+$this->user_model->like_after( $arrValue, $table );
+```
+
+### ab) or_like( $arrValue [, $table ] )
+Get result set of data with OR condition using like clause with placing % both left and right.
+
+ **Parameters** 
+ 
+ 1. `$arrValue` = string|array REQUIRED. Key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return array collection of data with more than single rows, EMPTY otherwise
+
+```Php
+// without table
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$this->user_model->or_like( $arrValue );
+
+-----------------------or------------------------
+
+// with table's name
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$table = 'users';
+$this->user_model->or_like( $arrValue, $table );
+```
+
+### ac) or_like_before( $arrValue [, $table ] )
+Get result set of data with OR condition using like clause with placing % only left side.
+
+ **Parameters** 
+ 
+ 1. `$arrValue` = string|array REQUIRED. Key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return array collection of data with more than single rows, EMPTY otherwise
+
+```Php
+// without table
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$this->user_model->or_like_before( $arrValue );
+
+-----------------------or------------------------
+
+// with table's name
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$table = 'users';
+$this->user_model->or_like_before( $arrValue, $table );
+```
+
+### ad) or_like_after( $arrValue [, $table ] )
+Get result set of data with OR condition using like clause with placing % only right side.
+
+ **Parameters** 
+ 
+ 1. `$arrValue` = string|array REQUIRED. Key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return array collection of data with more than single rows, EMPTY otherwise
+
+```Php
+// without table
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$this->user_model->or_like_after( $arrValue );
+
+-----------------------or------------------------
+
+// with table's name
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$table = 'users';
+$this->user_model->or_like_after( $arrValue, $table );
+```
+
+### ae) not_like( $arrValue [, $table ] )
+Get result set of data with AND condition using not like clause with placing % both left and right.
+
+ **Parameters** 
+ 
+ 1. `$arrValue` = string|array REQUIRED. Key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return array collection of data with more than single rows, EMPTY otherwise
+
+```Php
+// without table
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$this->user_model->not_like( $arrValue );
+
+-----------------------or------------------------
+
+// with table's name
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$table = 'users';
+$this->user_model->not_like( $arrValue, $table );
+```
+
+### af) not_like_before( $arrValue [, $table ] )
+Get result set of data with AND condition using not like clause with placing % only left side.
+
+ **Parameters** 
+ 
+ 1. `$arrValue` = string|array REQUIRED. Key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return array collection of data with more than single rows, EMPTY otherwise
+
+```Php
+// without table
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$this->user_model->not_like_before( $arrValue );
+
+-----------------------or------------------------
+
+// with table's name
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$table = 'users';
+$this->user_model->not_like_before( $arrValue, $table );
+```
+
+### ag) not_like_after( $arrValue [, $table ] )
+Get result set of data with AND condition using not like clause with placing % only right side.
+
+ **Parameters** 
+ 
+ 1. `$arrValue` = string|array REQUIRED. Key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return array collection of data with more than single rows, EMPTY otherwise
+
+```Php
+// without table
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$this->user_model->not_like_after( $arrValue );
+
+-----------------------or------------------------
+
+// with table's name
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$table = 'users';
+$this->user_model->not_like_after( $arrValue, $table );
+```
+
+### ah) or_not_like( $arrValue [, $table ] )
+Get result set of data with OR condition using not like clause with placing % both left and right.
+
+ **Parameters** 
+ 
+ 1. `$arrValue` = string|array REQUIRED. Key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return array collection of data with more than single rows, EMPTY otherwise
+
+```Php
+// without table
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$this->user_model->or_not_like( $arrValue );
+
+-----------------------or------------------------
+
+// with table's name
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$table = 'users';
+$this->user_model->or_not_like( $arrValue, $table );
+```
+
+### ai) or_not_like_before( $arrValue [, $table ] )
+Get result set of data with OR condition using not like clause with placing % only left side.
+
+ **Parameters** 
+ 
+ 1. `$arrValue` = string|array REQUIRED. Key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return array collection of data with more than single rows, EMPTY otherwise
+
+```Php
+// without table
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$this->user_model->or_not_like_before( $arrValue );
+
+-----------------------or------------------------
+
+// with table's name
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$table = 'users';
+$this->user_model->or_not_like_before( $arrValue, $table );
+```
+
+### aj) or_not_like_after( $arrValue [, $table ] )
+Get result set of data with OR condition using not like clause with placing % only right side.
+
+ **Parameters** 
+ 
+ 1. `$arrValue` = string|array REQUIRED. Key-value paired array.
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return array collection of data with more than single rows, EMPTY otherwise
+
+```Php
+// without table
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$this->user_model->or_not_like_after( $arrValue );
+
+-----------------------or------------------------
+
+// with table's name
+$arrValue = array('name' => 'emi', 'email' => 'emi@emi.com' );
+$table = 'users';
+$this->user_model->or_not_like_after( $arrValue, $table );
+```
+
 
 
 
