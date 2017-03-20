@@ -706,6 +706,7 @@ class Model_app extends CI_Model {
      * Select maximun data
      * @param  [string]  $fields [fields's for finding max]
      * @param  string $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * ======================================
      * Example :
@@ -740,6 +741,7 @@ class Model_app extends CI_Model {
      * Select minimun data
      * @param  [string]  $fields [fields's for finding min]
      * @param  string    $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * ======================================
      * Example :
@@ -774,6 +776,7 @@ class Model_app extends CI_Model {
      * Select average data
      * @param  [string]  $fields [fields's for finding average]
      * @param  string    $table  [table's name]
+     * @param  array    $join    [using join statement]
      * @return [type]          [description]
      * ======================================
      * Example :
@@ -808,6 +811,7 @@ class Model_app extends CI_Model {
      * Select sum of data
      * @param  [string]  $fields [fields's for finding sum]
      * @param  string    $table  [table's name]
+     * @param  array    $join    [using join statement]
      * @return [type]          [description]
      * ======================================
      * Example :
@@ -842,6 +846,7 @@ class Model_app extends CI_Model {
      * Counts the data using condition, return num rows of data being search
      * @param  [array]  $where [array key value pair for each columns and value]
      * @param  string $table [table's name]
+     * @param  array   $join    [using join statement]
      * @return [type]         [description]
      * ====================================
      * Example :
@@ -874,6 +879,7 @@ class Model_app extends CI_Model {
      * select where data with AND clause/condition
      * @param  [string]  $arrValue [column's name]
      * @param  string $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * =====================================
      * Example : 
@@ -901,6 +907,7 @@ class Model_app extends CI_Model {
      * select where data with OR clause/condition
      * @param  [string]  $arrValue [column's name]
      * @param  string $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * =====================================
      * Example : 
@@ -928,6 +935,7 @@ class Model_app extends CI_Model {
      * select having data with AND clause/condition
      * @param  [string]  $arrValue [column's name]
      * @param  string $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * =====================================
      * Example : 
@@ -955,6 +963,7 @@ class Model_app extends CI_Model {
      * select having data with OR clause/condition
      * @param  [string]  $arrValue [column's name]
      * @param  string $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * =====================================
      * Example : 
@@ -982,6 +991,7 @@ class Model_app extends CI_Model {
      * select where in data with AND clause/condition
      * @param  [string]  $arrValue [column's name]
      * @param  string $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * =====================================
      * Example : 
@@ -1011,6 +1021,7 @@ class Model_app extends CI_Model {
      * select where in data with OR clause/condition
      * @param  [string]  $arrValue [column's name]
      * @param  string $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * =====================================
      * Example : 
@@ -1040,6 +1051,7 @@ class Model_app extends CI_Model {
      * select where NOT in data with AND clause/condition
      * @param  [string]  $arrValue [column's name]
      * @param  string $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * =====================================
      * Example : 
@@ -1069,6 +1081,7 @@ class Model_app extends CI_Model {
      * select where NOT in data with OR clause/condition
      * @param  [string]  $arrValue [column's name]
      * @param  string $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * =====================================
      * Example : 
@@ -1099,6 +1112,7 @@ class Model_app extends CI_Model {
      * %% will placed both left and right
      * @param  [array]  $fields [column to search | key-value pair array]
      * @param  string $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * =====================================
      * Example : 
@@ -1129,6 +1143,7 @@ class Model_app extends CI_Model {
      * % will placed left only
      * @param  [array]  $fields [column to search]
      * @param  string $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * =====================================
      * Example : 
@@ -1159,6 +1174,7 @@ class Model_app extends CI_Model {
      * % will placed right only
      * @param  [array]  $fields [column to search]
      * @param  string $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * =====================================
      * Example : 
@@ -1189,6 +1205,7 @@ class Model_app extends CI_Model {
      * %% will placed both left and right
      * @param  [array]  $fields [column to search | key-value pair array]
      * @param  string $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * =====================================
      * Example : 
@@ -1219,6 +1236,7 @@ class Model_app extends CI_Model {
      * % will placed left only
      * @param  [array]  $fields [column to search]
      * @param  string $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * =====================================
      * Example : 
@@ -1249,6 +1267,7 @@ class Model_app extends CI_Model {
      * % will placed right only
      * @param  [array]  $fields [column to search]
      * @param  string $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * =====================================
      * Example : 
@@ -1279,6 +1298,7 @@ class Model_app extends CI_Model {
      * %% will placed both left and right
      * @param  [array]  $fields [column to search | key-value pair array]
      * @param  string $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * =====================================
      * Example : 
@@ -1309,6 +1329,7 @@ class Model_app extends CI_Model {
      * % will placed left only
      * @param  [array]  $fields [column to search]
      * @param  string $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * =====================================
      * Example : 
@@ -1339,6 +1360,7 @@ class Model_app extends CI_Model {
      * % will placed right only
      * @param  [array]  $fields [column to search]
      * @param  string $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * =====================================
      * Example : 
@@ -1369,6 +1391,7 @@ class Model_app extends CI_Model {
      * %% will placed both left and right
      * @param  [array]  $fields [column to search | key-value pair array]
      * @param  string $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * =====================================
      * Example : 
@@ -1399,6 +1422,7 @@ class Model_app extends CI_Model {
      * % will placed left only
      * @param  [array]  $fields [column to search]
      * @param  string $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * =====================================
      * Example : 
@@ -1429,6 +1453,7 @@ class Model_app extends CI_Model {
      * % will placed right only
      * @param  [array]  $fields [column to search]
      * @param  string $table  [table's name]
+     * @param  array $join    [using join statement]
      * @return [type]          [description]
      * =====================================
      * Example : 
