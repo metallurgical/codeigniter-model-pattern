@@ -362,9 +362,9 @@ Array collection. Collection of dataset coming/fetching from database's table wi
             //'or_not_like_before' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
             //'or_not_like_after' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
           );
-     $this->seat_model->get_all_rows($where); // without specified table name or
+     $this->user_model->get_all_rows($where); // without specified table name or
      $table = "users";
-     $this->model_app->get_all_rows($where, false, $table);
+     $this->user_model->get_all_rows($where, false, $table);
       
 -----------------------or---------------------------------
 
@@ -372,15 +372,15 @@ Array collection. Collection of dataset coming/fetching from database's table wi
 // Example 2 : Using 2nd paramter = Select all fields or certain fields
       $fields = 'name, email'; // using string or
       $fields = array( 'name','email'); // using index array if not provided, then select * is presumed
-      $this->model_app->get_all_rows( false, $fields );
+      $this->user_model->get_all_rows( false, $fields );
       
 -----------------------or---------------------------------
 
 
 // Example 3 : Using 3rd parameter = table name
-      $this->seat_model->get_all_rows(); // this will select all the data inside user model's table if table did not provided OR
+      $this->user_model->get_all_rows(); // this will select all the data inside user model's table if table did not provided OR
       $table = "users";
-      $this->model_app->get_all_rows( false, false, $table);
+      $this->user_model->get_all_rows( false, false, $table);
      
 -----------------------or---------------------------------
 
@@ -434,14 +434,14 @@ Array collection. Collection of dataset coming/fetching from database's table wi
 // Example 5 : Using 5th parameter = Order by result
       $orderBy = 'name asc, id desc'; // or 
       $orderBy = array( 'name' => 'asc', 'id' => 'desc' );
-      $this->model_app->get_all_rows( false, false, false, false, $orderBy );
+      $this->user_model->get_all_rows( false, false, false, false, $orderBy );
      
 -----------------------or---------------------------------
 
 
 // Example 6 : Using 6th parameter = group by result
       $groupBy = 'name'; // or $groupBy = array( 'name', 'id' );
-      $this->model_app->get_all_rows( false, false, false, false, false, $groupBy );
+      $this->user_model->get_all_rows( false, false, false, false, false, $groupBy );
      
 -----------------------or---------------------------------
 
@@ -449,7 +449,7 @@ Array collection. Collection of dataset coming/fetching from database's table wi
 // Example 7 : Using 7th parameter = limit the result
      $limit = '20'; // limit only
      $limit = [10 => 20]; // limit and offset, key is a limit, values is an offset
-     $this->model_app->get_all_rows( false, false, false, false, false, false, $limit );
+     $this->user_model->get_all_rows( false, false, false, false, false, false, $limit );
 ```
 
 ### h) get_specified_row( [ $where, $fields, $table, $join, $orderBy, $groupBy, $limit ] )
@@ -702,20 +702,20 @@ Return integet number. 0 if no data found, 1 or > if found.
 
 ```Php
 // without condition
-$this->model_app->count();
+$this->user_model->count();
 
 -----------------------or------------------------
 
 // with condition
 $where = array('id' => 1);
-$this->model_app->count( $where );
+$this->user_model->count( $where );
 
 -----------------------or------------------------
 
 // with table's name
 $where = array('id' => 1);
 $table = 'groups';
-$this->model_app->count( $where, $table );
+$this->user_model->count( $where, $table );
 ```
 
 ### q) where( $arrValue [, $table, $join ] )
