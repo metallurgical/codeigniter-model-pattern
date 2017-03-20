@@ -166,7 +166,10 @@ class Model_app extends CI_Model {
             $query = $this->db->empty_table( $table );
         }
 
-        return $query;
+        if ( $query )
+            return TRUE;
+        else
+            return FALSE;
 
     }
     /**
@@ -186,7 +189,10 @@ class Model_app extends CI_Model {
             $query = $this->db->truncate( $table );
         }
 
-        return $query;
+        if ( $query )
+            return TRUE;
+        else
+            return FALSE;
         
     }
     /**
