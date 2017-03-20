@@ -58,7 +58,7 @@ class User_model extends Model_app {
 
 # Availables Function/Options
 
-1. [insert](https://github.com/metallurgical/codeigniter-model-pattern/blob/master/README.md#1-insert)
+1. [insert](https://github.com/metallurgical/codeigniter-model-pattern/blob/master/README.md#a-insert-arraydata-table-)
 2. [insert_batch](https://github.com/metallurgical/codeigniter-model-pattern/blob/master/README.md#b-insert_batch-arraydata-table-)
 3. [delete](https://github.com/metallurgical/codeigniter-model-pattern/blob/master/README.md#c-delete-where-table-)
 4. [clear](https://github.com/metallurgical/codeigniter-model-pattern/blob/master/README.md#d-clear-table-)
@@ -128,6 +128,7 @@ $result = $this->user_model->insert( $arrayData, $table );
 
 
 ### b) insert_batch( $arrayData [,$table] )
+--------
 Insert data into table batch by batch
 
  **Parameters**
@@ -162,6 +163,7 @@ $result = $this->user_model->insert_batch( $arrayData, $table );
 
 
 ### c) delete( $where [,$table] )
+--------
 Delete data from table either single or multiple table
 
  **Parameters**
@@ -187,6 +189,7 @@ $this->user_model->delete( $where, $table )
 ```
 
 ### d) clear( [$table] )
+--------
 Will empty the data inside database's table. Same like @truncate method except this use DELETE keyword
 
  **Parameters**
@@ -209,6 +212,7 @@ $this->user_model->clear( $table );
 ```
 
 ### e) truncate( [$table] )
+--------
 Will empty the data inside database's table. Same like @clear method except this use TRUNCATE keyword
 
  **Parameters**
@@ -231,6 +235,7 @@ $this->user_model->truncate( $table );
 ```
 
 ### f) get_last_data( $fieldToOrder [, $where, $fieldToSelect, $table] )
+--------
 Get the last data from table
 
  **Parameters**
@@ -266,6 +271,7 @@ $this->user_model->get_last_data( $fieldToOrder, $where );
 ```
 
 ### g) get_all_rows( [ $where, $fields, $table, $join, $orderBy, $groupBy, $limit  ] )
+--------
 Get data more than one rows from database's table. This method accept various sql keyword to perform any database operation. You can either use all where, join, like, family etc that exist on codeigniter's quiry builder.
 
  **Parameters**
@@ -454,7 +460,7 @@ Array collection. Collection of dataset coming/fetching from database's table wi
 ```
 
 ### h) get_specified_row( [ $where, $fields, $table, $join, $orderBy, $groupBy, $limit ] )
-
+--------
 Get ONLY one row from database's table. This method accept various sql keyword to perform any database operation. You can either use all where, join, like, family etc that exist on codeigniter's quiry builder. 
 
  **Parameters**
@@ -467,6 +473,7 @@ Array key-valued paired which only returned single row data only. This method id
 
 
 ### i) update( $columnToUpdate, $usingCondition [, $tableToUpdate ] )
+--------
 Update data inside database's table
 
  **Parameters**
@@ -494,6 +501,7 @@ $this->user_model->update( $columnToUpdate, $usingCondition );
 
 
 ### j) update_batch( $columnToUpdate, $usingCondition [, $tableToUpdate ] )
+--------
 Update data inside database's table
 
  **Parameters**
@@ -525,6 +533,7 @@ $this->user_model->update( $columnToUpdate, $usingCondition );
 ```
 
 ### k) replace( $data [, $table ] )
+--------
 Replacing existing data into the new one. Usually used when mixed with DELETE and INSERT query at the same time.
 
  **Parameters**
@@ -549,6 +558,7 @@ $this->user_model->replace( $data );
 ```
 
 ### l) max( $fields [, $where, $table, $join ] )
+--------
 Get maximun value from certain field/column
 
  **Parameters**
@@ -584,6 +594,7 @@ $result = $this->user_model->max( $fields, $where, $table );
 ```
 
 ### m) min( $fields [, $where, $table, $join ] )
+--------
 Get minumun value from certain field/column
 
  **Parameters**
@@ -619,6 +630,7 @@ $result = $this->user_model->min( $fields, $where, $table );
 ```
 
 ### n) avg( $fields [, $where, $table, $join ] )
+--------
 Get average value from certain field/column
 
  **Parameters**
@@ -654,6 +666,7 @@ $result = $this->user_model->avg( $fields, $where, $table );
 ```
 
 ### o) sum( $fields [, $where, $table, $join ] )
+--------
 Get sum of value from certain field/column
 
  **Parameters**
@@ -689,6 +702,7 @@ $result = $this->user_model->sum( $fields, $where, $table );
 ```
 
 ### p) count( [ $where, $table, $join ] )
+--------
 Get average value from certain field/column
 
  **Parameters** 
@@ -720,6 +734,7 @@ $this->user_model->count( $where, $table );
 ```
 
 ### q) where( $arrValue [, $table, $join ] )
+--------
 Get result set of data with AND condition
 
  **Parameters** 
@@ -746,6 +761,7 @@ $this->user_model->where( $arrValue, $table );
 ```
 
 ### r) or_where( $arrValue [, $table, $join ] )
+--------
 Get result set of data with OR condition
 
  **Parameters** 
@@ -772,6 +788,7 @@ $this->user_model->or_where( $arrValue, $table );
 ```
 
 ### s) having( $arrValue [, $table, $join ] )
+--------
 Get result set of data with AND condition using having. Identical to @where method
 
  **Parameters** 
@@ -798,6 +815,7 @@ $this->user_model->having( $arrValue, $table );
 ```
 
 ### t) or_having( $arrValue [, $table, $join ] )
+--------
 Get result set of data with OR condition using having. Identical to @or_where method
 
  **Parameters** 
@@ -824,6 +842,7 @@ $this->user_model->or_having( $arrValue, $table );
 ```
 
 ### u) where_in( $arrValue [, $table, $join ] )
+--------
 Get result set of data with AND condition using where in which accept an array as value.
 
  **Parameters** 
@@ -850,6 +869,7 @@ $this->user_model->or_having( $arrValue, $table );
 ```
 
 ### v) or_where_in( $arrValue [, $table, $join ] )
+--------
 Get result set of data with OR condition using where in which accept an array as value.
 
  **Parameters** 
@@ -876,6 +896,7 @@ $this->user_model->or_where_in( $arrValue, $table );
 ```
 
 ### w) where_not_in( $arrValue [, $table, $join ] )
+--------
 Get result set of data with AND condition using where not in which accept an array as value.
 
  **Parameters** 
@@ -902,6 +923,7 @@ $this->user_model->where_not_in( $arrValue, $table );
 ```
 
 ### x) or_where_not_in( $arrValue [, $table, $join ] )
+--------
 Get result set of data with OR condition using where not in which accept an array as value.
 
  **Parameters** 
@@ -929,6 +951,7 @@ $this->user_model->or_where_not_in( $arrValue, $table );
 
 
 ### y) like( $arrValue [, $table, $join ] )
+--------
 Get result set of data with AND condition using like clause with placing % both left and right.
 
  **Parameters** 
@@ -955,6 +978,7 @@ $this->user_model->or_where_not_in( $arrValue, $table );
 ```
 
 ### z) like_before( $arrValue [, $table, $join ] )
+--------
 Get result set of data with AND condition using like clause with placing % only left side.
 
  **Parameters** 
@@ -981,6 +1005,7 @@ $this->user_model->like_before( $arrValue, $table );
 ```
 
 ### aa) like_after( $arrValue [, $table, $join ] )
+--------
 Get result set of data with AND condition using like clause with placing % only right side.
 
  **Parameters** 
@@ -1007,6 +1032,7 @@ $this->user_model->like_after( $arrValue, $table );
 ```
 
 ### ab) or_like( $arrValue [, $table, $join ] )
+--------
 Get result set of data with OR condition using like clause with placing % both left and right.
 
  **Parameters** 
@@ -1033,6 +1059,7 @@ $this->user_model->or_like( $arrValue, $table );
 ```
 
 ### ac) or_like_before( $arrValue [, $table, $join ] )
+--------
 Get result set of data with OR condition using like clause with placing % only left side.
 
  **Parameters** 
@@ -1059,6 +1086,7 @@ $this->user_model->or_like_before( $arrValue, $table );
 ```
 
 ### ad) or_like_after( $arrValue [, $table, $join ] )
+--------
 Get result set of data with OR condition using like clause with placing % only right side.
 
  **Parameters** 
@@ -1085,6 +1113,7 @@ $this->user_model->or_like_after( $arrValue, $table );
 ```
 
 ### ae) not_like( $arrValue [, $table, $join ] )
+--------
 Get result set of data with AND condition using not like clause with placing % both left and right.
 
  **Parameters** 
@@ -1111,6 +1140,7 @@ $this->user_model->not_like( $arrValue, $table );
 ```
 
 ### af) not_like_before( $arrValue [, $table, $join ] )
+--------
 Get result set of data with AND condition using not like clause with placing % only left side.
 
  **Parameters** 
@@ -1137,6 +1167,7 @@ $this->user_model->not_like_before( $arrValue, $table );
 ```
 
 ### ag) not_like_after( $arrValue [, $table, $join ] )
+--------
 Get result set of data with AND condition using not like clause with placing % only right side.
 
  **Parameters** 
@@ -1163,6 +1194,7 @@ $this->user_model->not_like_after( $arrValue, $table );
 ```
 
 ### ah) or_not_like( $arrValue [, $table, $join ] )
+--------
 Get result set of data with OR condition using not like clause with placing % both left and right.
 
  **Parameters** 
@@ -1189,6 +1221,7 @@ $this->user_model->or_not_like( $arrValue, $table );
 ```
 
 ### ai) or_not_like_before( $arrValue [, $table, $join ] )
+--------
 Get result set of data with OR condition using not like clause with placing % only left side.
 
  **Parameters** 
@@ -1215,6 +1248,7 @@ $this->user_model->or_not_like_before( $arrValue, $table );
 ```
 
 ### aj) or_not_like_after( $arrValue [, $table, $join ] )
+--------
 Get result set of data with OR condition using not like clause with placing % only right side.
 
  **Parameters** 
