@@ -340,8 +340,8 @@ Get data more than one rows from database's table. This method accept various sq
 Array collection. Collection of dataset coming/fetching from database's table with one or more rows are returned
 
 ```Php
-Example 1 : Using 1st parameter = WHERE and LIKE condition
-     // Availables where condition can be used is, where, where_in, or_where_in, where_not_in, or_where_not_in,or_where, having, or_having, like, like_before, like_after, or_like, or_like_before, or_like_after, not_like, not_like_before, not_like_after, or_not_like, or_not_like_before, or_not_like_after
+// Example 1 : Using 1st parameter = WHERE and LIKE condition
+// Availables where condition can be used is, where, where_in, or_where_in, where_not_in, or_where_not_in,or_where, having, or_having, like, like_before, like_after, or_like, or_like_before, or_like_after, not_like, not_like_before, not_like_after, or_not_like, or_not_like_before, or_not_like_after
       
      $where = array(
             'where' => array('id !=' => 1, 'email =' => 'emi@emi.com' ),
@@ -365,31 +365,31 @@ Example 1 : Using 1st parameter = WHERE and LIKE condition
             //'or_not_like_before' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
             //'or_not_like_after' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
           );
-     $this->seat_model->get_all_rows($where); --> without specified table name or
+     $this->seat_model->get_all_rows($where); // without specified table name or
      $table = "users";
      $this->model_app->get_all_rows($where, false, $table);
       
 -----------------------or---------------------------------
 
 
-Example 2 : Using 2nd paramter = Select all fields or certain fields
-      $fields = 'name, email'; -- using string or
-      $fields = array( 'name','email'); -- using index array if not provided, then select * is presumed
+// Example 2 : Using 2nd paramter = Select all fields or certain fields
+      $fields = 'name, email'; // using string or
+      $fields = array( 'name','email'); // using index array if not provided, then select * is presumed
       $this->model_app->get_all_rows( false, $fields );
       
 -----------------------or---------------------------------
 
 
-Example 3 : Using 3rd parameter = table name
-      $this->seat_model->get_all_rows(); --> this will select all the data inside user model's table if table did not provided OR
+// Example 3 : Using 3rd parameter = table name
+      $this->seat_model->get_all_rows(); // this will select all the data inside user model's table if table did not provided OR
       $table = "users";
       $this->model_app->get_all_rows( false, false, $table);
      
 -----------------------or---------------------------------
 
 
-Example 4 : Using 4th parameter = join single or multiple
-       Available join are inner, left, right, left outer, right outer, join, outer, inner
+// Example 4 : Using 4th parameter = join single or multiple
+// Available join are inner, left, right, left outer, right outer, join, outer, inner
        $join = array(
               // single table on particular join
                 'join' => array( 'users_groups' => 'users.id = users_groups.user_id' ),
@@ -434,24 +434,24 @@ Example 4 : Using 4th parameter = join single or multiple
 -----------------------or---------------------------------
 
 
-Example 5 : Using 5th parameter = Order by result
-      $orderBy = 'name asc, id desc'; or 
+// Example 5 : Using 5th parameter = Order by result
+      $orderBy = 'name asc, id desc'; // or 
       $orderBy = array( 'name' => 'asc', 'id' => 'desc' );
       $this->model_app->get_all_rows( false, false, false, false, $orderBy );
      
 -----------------------or---------------------------------
 
 
-Example 6 : Using 6th parameter = group by result
-      $groupBy = 'name'; or $groupBy = array( 'name', 'id' );
+// Example 6 : Using 6th parameter = group by result
+      $groupBy = 'name'; // or $groupBy = array( 'name', 'id' );
       $this->model_app->get_all_rows( false, false, false, false, false, $groupBy );
      
 -----------------------or---------------------------------
 
 
-Example 7 : Using 7th parameter = limit the result
-     $limit = '20'; limit only
-     $limit = [10 => 20]; limit and offset, key is a limit, values is an offset
+// Example 7 : Using 7th parameter = limit the result
+     $limit = '20'; // limit only
+     $limit = [10 => 20]; // limit and offset, key is a limit, values is an offset
      $this->model_app->get_all_rows( false, false, false, false, false, false, $limit );
 ```
 
