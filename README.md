@@ -549,7 +549,7 @@ $data = array(
 $this->user_model->replace( $data );
 ```
 
-### l) max( $fields [, $where, $table ] )
+### l) max( $fields [, $where, $table, $join ] )
 Get maximun value from certain field/column
 
  **Parameters**
@@ -557,6 +557,7 @@ Get maximun value from certain field/column
  1. `$fields` = string REQUIRED. Field/column's name
  2. `$where` = string|array OPTIONAL. Key-value paired array.
  3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 4. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -583,7 +584,7 @@ $table = 'users_contact';
 $result = $this->user_model->max( $fields, $where, $table );
 ```
 
-### m) min( $fields [, $where, $table ] )
+### m) min( $fields [, $where, $table, $join ] )
 Get minumun value from certain field/column
 
  **Parameters**
@@ -591,6 +592,7 @@ Get minumun value from certain field/column
  1. `$fields` = string REQUIRED. Field/column's name
  2. `$where` = string|array OPTIONAL. Key-value paired array.
  3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 4. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -617,7 +619,7 @@ $table = 'users_contact';
 $result = $this->user_model->min( $fields, $where, $table );
 ```
 
-### n) avg( $fields [, $where, $table ] )
+### n) avg( $fields [, $where, $table, $join ] )
 Get average value from certain field/column
 
  **Parameters**
@@ -625,6 +627,7 @@ Get average value from certain field/column
  1. `$fields` = string REQUIRED. Field/column's name
  2. `$where` = string|array OPTIONAL. Key-value paired array.
  3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 4. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -651,7 +654,7 @@ $table = 'users_contact';
 $result = $this->user_model->avg( $fields, $where, $table );
 ```
 
-### o) sum( $fields [, $where, $table ] )
+### o) sum( $fields [, $where, $table, $join ] )
 Get sum of value from certain field/column
 
  **Parameters**
@@ -659,6 +662,7 @@ Get sum of value from certain field/column
  1. `$fields` = string REQUIRED. Field/column's name
  2. `$where` = string|array OPTIONAL. Key-value paired array.
  3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 4. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -685,13 +689,14 @@ $table = 'users_contact';
 $result = $this->user_model->sum( $fields, $where, $table );
 ```
 
-### p) count( [ $where, $table ] )
+### p) count( [ $where, $table, $join ] )
 Get average value from certain field/column
 
  **Parameters** 
  
  1. `$where` = string|array OPTIONAL. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -715,13 +720,14 @@ $table = 'groups';
 $this->model_app->count( $where, $table );
 ```
 
-### q) where( $arrValue [, $table ] )
+### q) where( $arrValue [, $table, $join ] )
 Get result set of data with AND condition
 
  **Parameters** 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -740,13 +746,14 @@ $table = 'users';
 $this->user_model->where( $arrValue, $table );
 ```
 
-### r) or_where( $arrValue [, $table ] )
+### r) or_where( $arrValue [, $table, $join ] )
 Get result set of data with OR condition
 
  **Parameters** 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -765,13 +772,14 @@ $table = 'users';
 $this->user_model->or_where( $arrValue, $table );
 ```
 
-### s) having( $arrValue [, $table ] )
+### s) having( $arrValue [, $table, $join ] )
 Get result set of data with AND condition using having. Identical to @where method
 
  **Parameters** 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -790,13 +798,14 @@ $table = 'users';
 $this->user_model->having( $arrValue, $table );
 ```
 
-### t) or_having( $arrValue [, $table ] )
+### t) or_having( $arrValue [, $table, $join ] )
 Get result set of data with OR condition using having. Identical to @or_where method
 
  **Parameters** 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -815,13 +824,14 @@ $table = 'users';
 $this->user_model->or_having( $arrValue, $table );
 ```
 
-### u) where_in( $arrValue [, $table ] )
+### u) where_in( $arrValue [, $table, $join ] )
 Get result set of data with AND condition using where in which accept an array as value.
 
  **Parameters** 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -840,13 +850,14 @@ $table = 'users';
 $this->user_model->or_having( $arrValue, $table );
 ```
 
-### v) or_where_in( $arrValue [, $table ] )
+### v) or_where_in( $arrValue [, $table, $join ] )
 Get result set of data with OR condition using where in which accept an array as value.
 
  **Parameters** 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -872,6 +883,7 @@ Get result set of data with AND condition using where not in which accept an arr
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -890,13 +902,14 @@ $table = 'users';
 $this->user_model->where_not_in( $arrValue, $table );
 ```
 
-### x) or_where_not_in( $arrValue [, $table ] )
+### x) or_where_not_in( $arrValue [, $table, $join ] )
 Get result set of data with OR condition using where not in which accept an array as value.
 
  **Parameters** 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -916,13 +929,14 @@ $this->user_model->or_where_not_in( $arrValue, $table );
 ```
 
 
-### y) like( $arrValue [, $table ] )
+### y) like( $arrValue [, $table, $join ] )
 Get result set of data with AND condition using like clause with placing % both left and right.
 
  **Parameters** 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -941,13 +955,14 @@ $table = 'users';
 $this->user_model->or_where_not_in( $arrValue, $table );
 ```
 
-### z) like_before( $arrValue [, $table ] )
+### z) like_before( $arrValue [, $table, $join ] )
 Get result set of data with AND condition using like clause with placing % only left side.
 
  **Parameters** 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -966,13 +981,14 @@ $table = 'users';
 $this->user_model->like_before( $arrValue, $table );
 ```
 
-### aa) like_after( $arrValue [, $table ] )
+### aa) like_after( $arrValue [, $table, $join ] )
 Get result set of data with AND condition using like clause with placing % only right side.
 
  **Parameters** 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -991,13 +1007,14 @@ $table = 'users';
 $this->user_model->like_after( $arrValue, $table );
 ```
 
-### ab) or_like( $arrValue [, $table ] )
+### ab) or_like( $arrValue [, $table, $join ] )
 Get result set of data with OR condition using like clause with placing % both left and right.
 
  **Parameters** 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -1016,13 +1033,14 @@ $table = 'users';
 $this->user_model->or_like( $arrValue, $table );
 ```
 
-### ac) or_like_before( $arrValue [, $table ] )
+### ac) or_like_before( $arrValue [, $table, $join ] )
 Get result set of data with OR condition using like clause with placing % only left side.
 
  **Parameters** 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -1041,13 +1059,14 @@ $table = 'users';
 $this->user_model->or_like_before( $arrValue, $table );
 ```
 
-### ad) or_like_after( $arrValue [, $table ] )
+### ad) or_like_after( $arrValue [, $table, $join ] )
 Get result set of data with OR condition using like clause with placing % only right side.
 
  **Parameters** 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -1066,13 +1085,14 @@ $table = 'users';
 $this->user_model->or_like_after( $arrValue, $table );
 ```
 
-### ae) not_like( $arrValue [, $table ] )
+### ae) not_like( $arrValue [, $table, $join ] )
 Get result set of data with AND condition using not like clause with placing % both left and right.
 
  **Parameters** 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -1091,13 +1111,14 @@ $table = 'users';
 $this->user_model->not_like( $arrValue, $table );
 ```
 
-### af) not_like_before( $arrValue [, $table ] )
+### af) not_like_before( $arrValue [, $table, $join ] )
 Get result set of data with AND condition using not like clause with placing % only left side.
 
  **Parameters** 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -1116,13 +1137,14 @@ $table = 'users';
 $this->user_model->not_like_before( $arrValue, $table );
 ```
 
-### ag) not_like_after( $arrValue [, $table ] )
+### ag) not_like_after( $arrValue [, $table, $join ] )
 Get result set of data with AND condition using not like clause with placing % only right side.
 
  **Parameters** 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -1141,13 +1163,14 @@ $table = 'users';
 $this->user_model->not_like_after( $arrValue, $table );
 ```
 
-### ah) or_not_like( $arrValue [, $table ] )
+### ah) or_not_like( $arrValue [, $table, $join ] )
 Get result set of data with OR condition using not like clause with placing % both left and right.
 
  **Parameters** 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -1166,13 +1189,14 @@ $table = 'users';
 $this->user_model->or_not_like( $arrValue, $table );
 ```
 
-### ai) or_not_like_before( $arrValue [, $table ] )
+### ai) or_not_like_before( $arrValue [, $table, $join ] )
 Get result set of data with OR condition using not like clause with placing % only left side.
 
  **Parameters** 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -1191,13 +1215,14 @@ $table = 'users';
 $this->user_model->or_not_like_before( $arrValue, $table );
 ```
 
-### aj) or_not_like_after( $arrValue [, $table ] )
+### aj) or_not_like_after( $arrValue [, $table, $join ] )
 Get result set of data with OR condition using not like clause with placing % only right side.
 
  **Parameters** 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
