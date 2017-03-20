@@ -703,9 +703,13 @@ class Model_app extends CI_Model {
      *     $table = 'booking';
      *     $result = $this->model_app->min( $fields, $table );
      */
-    function max ( $fields, $table = false ) {
+    function max ( $fields, $where = false, $table = false ) {
 
         $this->db->select_max( $fields );
+
+        if ( $where ) {
+            $this->db->where( $where );
+        }
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
@@ -727,9 +731,13 @@ class Model_app extends CI_Model {
      *     $table = 'booking';
      *     $result = $this->model_app->min( $fields, $table );
      */
-    function min ( $fields, $table = false ) {
+    function min ( $fields, $where = false, $table = false ) {
 
         $this->db->select_min( $fields );
+
+        if ( $where ) {
+            $this->db->where( $where );
+        }
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
@@ -751,9 +759,13 @@ class Model_app extends CI_Model {
      *     $table = 'booking';
      *     $result = $this->model_app->avg( $fields, $table );
      */
-    function avg ( $fields, $table = false ) {
+    function avg ( $fields, $where = false, $table = false ) {
 
         $this->db->select_avg( $fields );
+
+        if ( $where ) {
+            $this->db->where( $where );
+        }
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
@@ -775,9 +787,13 @@ class Model_app extends CI_Model {
      *     $table = 'booking';
      *     $result = $this->model_app->sum( $fields, $table );
      */
-    function sum ( $fields, $table = false ) {
+    function sum ( $fields, $where = false, $table = false ) {
 
         $this->db->select_sum( $fields );
+
+        if ( $where ) {
+            $this->db->where( $where );
+        }
 
         if ( !$table )
             $query = $this->db->get( $this->table ); 
