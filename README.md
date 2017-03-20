@@ -455,8 +455,202 @@ Array collection. Collection of dataset coming/fetching from database's table wi
      $this->model_app->get_all_rows( false, false, false, false, false, false, $limit );
 ```
 
+### h) get_specified_row( [ $where, $fields, $table, $join, $orderBy, $groupBy, $limit ] )
+
+Get ONLY one rows from database's table. This method accept various sql keyword to perform any database operation. You can either use all where, join, like, family etc that exist on codeigniter's quiry builder. 
+
+ **Parameters**
+ 
+ - All parameters inside @get_all_rows() method are availables here.
+
+**Return**
+
+Array key-valued paired which only returned single row data only. This method identical with **get_all_rows()** method except this method only returned one row data only.
 
 
+### i) update( $columnToUpdate, $usingCondition [, $tableToUpdate ] )
+Update data inside database's table
+
+ **Parameters**
+ 
+ 1. `$columnToUpdate` = array REQUIRED. Key-value paired array.
+ 2. `$usingCondition` = string|array REQUIRED. sql string or key-value paired array.
+ 3. `$tableToUpdate` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return 1 if success, 2 if no delete occured, 3 if delete operation can't be done.
+
+```Php
+$columnToUpdate = array(
+	array(
+		'title' => 'My title',
+		'name' => 'My Name',
+		'date' => 'My date'
+	)
+);
+
+$usingCondition = ['id' => 1'];
+$this->user_model->update( $columnToUpdate, $usingCondition );
+```
+
+
+### j) update_batch( $columnToUpdate, $usingCondition [, $tableToUpdate ] )
+Update data inside database's table
+
+ **Parameters**
+ 
+ 1. `$columnToUpdate` = array REQUIRED. Key-value paired array.
+ 2. `$usingCondition` = string REQUIRED. 
+ 3. `$tableToUpdate` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return TRUE success, FALSE otherwise.
+
+```Php
+$columnToUpdate = array(
+	array(
+		'id' => '1', // will act as primary key
+		'name' => 'My Name',
+		'date' => 'My date'
+	),
+    array(
+		'id' => '2', // will act as primary key
+		'name' => 'My Name',
+		'date' => 'My date'
+	)
+);
+
+$usingCondition = 'id';
+$this->user_model->update( $columnToUpdate, $usingCondition );
+```
+
+### k) replace( $data [, $table ] )
+Replacing existing data into the new one. Usually used when mixed with DELETE and INSERT query at the same time.
+
+ **Parameters**
+ 
+ 1. `$data` = array REQUIRED. Key-value paired array.
+ 3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return TRUE success, FALSE otherwise.
+
+```Php
+// this will find the data with an ID 1, and replacing existing content with new provided content
+$data = array(
+	array(
+		'id' => '1', // will act as primary key
+		'name' => 'My Name',
+		'date' => 'My date'
+	)
+);
+$this->user_model->replace( $data );
+```
+
+### l) max( $fields [, $where, $table ] )
+Get maximun value from certain field/column
+
+ **Parameters**
+ 
+ 1. `$fields` = string REQUIRED. Field/column's name
+ 2. `$where` = string|array OPTIONAL. Key-value paired array.
+ 3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return single row result array, EMPTY otherwise
+
+```Php
+// without condition
+$fields = 'quantity';
+$result = $this->user_model->max( $fields );
+
+-----------------------or------------------------
+
+// with condition
+$fields = 'quantity';
+$where = ['age' => 50];
+$result = $this->user_model->max( $fields, $where );
+
+-----------------------or------------------------
+
+// with table's name
+$fields = 'quantity';
+$where = ['age' => 50];
+$table = 'users_contact';
+$result = $this->user_model->max( $fields, $where, $table );
+```
+
+### m) min( $fields [, $where, $table ] )
+Get minumun value from certain field/column
+
+ **Parameters**
+ 
+ 1. `$fields` = string REQUIRED. Field/column's name
+ 2. `$where` = string|array OPTIONAL. Key-value paired array.
+ 3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return single row result array, EMPTY otherwise
+
+```Php
+// without condition
+$fields = 'quantity';
+$result = $this->user_model->min( $fields );
+
+-----------------------or------------------------
+
+// with condition
+$fields = 'quantity';
+$where = ['age' => 50];
+$result = $this->user_model->min( $fields, $where );
+
+-----------------------or------------------------
+
+// with table's name
+$fields = 'quantity';
+$where = ['age' => 50];
+$table = 'users_contact';
+$result = $this->user_model->min( $fields, $where, $table );
+```
+
+### n) avg( $fields [, $where, $table ] )
+Get average value from certain field/column
+
+ **Parameters**
+ 
+ 1. `$fields` = string REQUIRED. Field/column's name
+ 2. `$where` = string|array OPTIONAL. Key-value paired array.
+ 3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return single row result array, EMPTY otherwise
+
+```Php
+// without condition
+$fields = 'quantity';
+$result = $this->user_model->avg( $fields );
+
+-----------------------or------------------------
+
+// with condition
+$fields = 'quantity';
+$where = ['age' => 50];
+$result = $this->user_model->avg( $fields, $where );
+
+-----------------------or------------------------
+
+// with table's name
+$fields = 'quantity';
+$where = ['age' => 50];
+$table = 'users_contact';
+$result = $this->user_model->avg( $fields, $where, $table );
+```
 
 
 
