@@ -101,6 +101,7 @@ class User_model extends Model_app {
 We'll used extended/child class instead of calling base class directly. In this case is our `User_model.php`. This is only an example, you can have your own model that extend the base class.
 
 ### a) insert( $arrayData [,$table] )
+--------
 Insert data into table
 
  **Parameters**
