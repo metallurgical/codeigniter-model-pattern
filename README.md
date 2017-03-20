@@ -63,7 +63,7 @@ class User_model extends Model_app {
 3. [delete](https://github.com/metallurgical/codeigniter-model-pattern/blob/master/README.md#c-delete-where-table-)
 4. [clear](https://github.com/metallurgical/codeigniter-model-pattern/blob/master/README.md#d-clear-table-)
 5. [truncate](https://github.com/metallurgical/codeigniter-model-pattern/blob/master/README.md#e-truncate-table-)
-6. [getLastData](https://github.com/metallurgical/codeigniter-model-pattern/blob/master/README.md#f-getlastdata-fieldtoorder--where-fieldtoselect-table-)
+6. [get_last_data](https://github.com/metallurgical/codeigniter-model-pattern/blob/master/README.md#f-get_last_data-fieldtoorder--where-fieldtoselect-table-)
 7. [get_all_rows](https://github.com/metallurgical/codeigniter-model-pattern/blob/master/README.md#g-get_all_rows--where-fields-table-join-orderby-groupby-limit---)
 8. [get_specified_row](https://github.com/metallurgical/codeigniter-model-pattern/blob/master/README.md#h-get_specified_row--where-fields-table-join-orderby-groupby-limit--)
 9. [update](https://github.com/metallurgical/codeigniter-model-pattern/blob/master/README.md#i-update-columntoupdate-usingcondition--tabletoupdate--)
@@ -229,7 +229,7 @@ $table ='users_contact';
 $this->user_model->truncate( $table );
 ```
 
-### f) getLastData( $fieldToOrder [, $where, $fieldToSelect, $table] )
+### f) get_last_data( $fieldToOrder [, $where, $fieldToSelect, $table] )
 Get the last data from table
 
  **Parameters**
@@ -246,7 +246,7 @@ Single array key-value paired if found, EMPTY otherwise
 ```Php
 // get the last data and include all column desc by id 
 $fieldToOrder = 'id';
-$this->user_model->getLastData( $fieldToOrder );
+$this->user_model->get_last_data( $fieldToOrder );
 
  -----------------------or---------------------------------
  
@@ -254,14 +254,14 @@ $this->user_model->getLastData( $fieldToOrder );
 $table ='users_contact';
 $fieldToOrder = 'id';
 $fieldToSelect = 'name, email';
-$this->user_model->getLastData( $fieldToOrder, $field, $table );
+$this->user_model->get_last_data( $fieldToOrder, $field, $table );
 
  -----------------------or---------------------------------
  
 // get the last data using condition column desc by id 
 $fieldToOrder = 'id';
 $where = ['email' => 'norlihazmey89@gmail.com' ];
-$this->user_model->getLastData( $fieldToOrder, $where );
+$this->user_model->get_last_data( $fieldToOrder, $where );
 ```
 
 ### g) get_all_rows( [ $where, $fields, $table, $join, $orderBy, $groupBy, $limit  ] )
