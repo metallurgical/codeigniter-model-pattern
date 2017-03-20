@@ -58,7 +58,7 @@ class User_model extends Model_app {
 
 # Availables Function/Options
 
-1. [insert]()
+1. [insert](https://github.com/metallurgical/codeigniter-model-pattern/blob/master/README.md#1-insert)
 2. [insert_batch]()
 3. [delete]()
 4. [clear]()
@@ -99,4 +99,220 @@ class User_model extends Model_app {
 
 # Usage Example
 
-## 1. insert
+We'll used extended/child class instead of calling base class directly. In this case is our `User_model.php`. This is only an example, you can have your own model that extend the base class.
+
+#### a) insert( $arrayData [,$table] )
+Insert data into table
+
+ **Parameters**
+ 
+ 1. `$arrayData` = array REQUIRED. Key(column's name) value(column's value) paired array
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+If success will return last inserted ID, FALSE otherwise 
+
+```Php
+// insert into users table without specify table's name
+$arrayData = [ 'name' => 'norlihazmey', 'email' => 'norlihazmey89@gmail.com' ];
+$result = $this->user_model->insert( $arrayData );
+
+ -----------------------or---------------------------------
+ 
+// insert into users table with table's name
+$arrayData = [ 'name' => 'norlihazmey', 'email' => 'norlihazmey89@gmail.com' ];
+$table = 'users_contact';
+$result = $this->user_model->insert( $arrayData, $table );
+```
+
+
+#### b) insert_batch( $arrayData [,$table] )
+Insert data into table batch by batch
+
+ **Parameters**
+ 
+ 1. `$arrayData` = array REQUIRED. Collection of Key(column's name) value(column's value) paired array
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+If success will return TRUE, FALSE otherwise 
+
+```Php
+// insert into users table without specify table's name
+$arrayData = array(
+  array(
+  	'name' => 'Norlihazmey',
+  	'email' => 'norlihazmey89@gmail.com'
+  ),
+  array(
+  	'name' => 'Metallurgical',
+  	'email' => 'norlihazmey89@yahoo.com'
+  )
+);
+$result = $this->user_model->insert_batch( $arrayData );
+
+ -----------------------or---------------------------------
+ 
+// insert into users table with table's name
+$table = 'users_contact';
+$result = $this->user_model->insert_batch( $arrayData, $table );
+```
+
+
+#### c) delete( $where [,$table] )
+Delete data from table either single or multiple table
+
+ **Parameters**
+ 
+ 1. `$where` = array REQUIRED. Key(column's name) value(column's value) paired array
+ 2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Return 1 if success, 2 if no delete occured, 3 if delete operation can't be done.
+
+```Php
+// Single deleted 
+$where = array('id' => 1);
+$this->user_model->delete( $where )
+
+ -----------------------or---------------------------------
+ 
+// multiple deleted 
+$where = array('id' => 1);
+$table = array('users','users_booking','users_history');
+$this->user_model->delete( $where, $table )
+```
+
+#### d) clear( [$table] )
+Will empty the data inside database's table. Same like @truncate method except this use DELETE keyword
+
+ **Parameters**
+ 
+ 1. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+If success return TRUE, FALSE otherwise
+
+```Php
+// empty without table's name
+$this->user_model->clear();
+
+ -----------------------or---------------------------------
+ 
+// empty with table's name
+$table ='users_contact';
+$this->user_model->clear( $table );
+```
+
+#### e) truncate( [$table] )
+Will empty the data inside database's table. Same like @clear method except this use TRUNCATE keyword
+
+ **Parameters**
+ 
+ 1. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+If success return TRUE, FALSE otherwise
+
+```Php
+// empty without table's name
+$this->user_model->truncate();
+
+ -----------------------or---------------------------------
+ 
+// empty with table's name
+$table ='users_contact';
+$this->user_model->truncate( $table );
+```
+
+#### f) getLastData( $fieldToOrder [, $where, $fieldToSelect, $table] )
+Get the last data from table
+
+ **Parameters**
+ 
+ 1. `$fieldToOrder` = string REQUIRED. Which columns to make ordering.
+ 2. `$where` = string|array OPTIONAL. sql string or key-value paired array.
+ 2. `$fieldToSelect` = string|array OPTIONAL. Columns to select. Select all column if not specified.
+ 3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Single array key-value paired if found, EMPTY otherwise
+
+```Php
+// get the last data and include all column desc by id 
+$fieldToOrder = 'id';
+$this->model_app->getLastData( $fieldToOrder );
+
+ -----------------------or---------------------------------
+ 
+// get the last data and select only name, email column desc by id 
+$table ='users_contact';
+$fieldToOrder = 'id';
+$fieldToSelect = 'name, email';
+$this->model_app->getLastData( $fieldToOrder, $field, $table );
+
+ -----------------------or---------------------------------
+ 
+// get the last data using condition column desc by id 
+$fieldToOrder = 'id';
+$where = ['email' => 'norlihazmey89@gmail.com' ];
+$this->model_app->getLastData( $fieldToOrder, $where );
+```
+
+#### g) get_all_rows( [ $where, $fields, $table, $join, $orderBy, $groupBy, $limit  ] )
+Get data more than one rows from database's table. This method accept various sql keyword to perform any database operation. You can either use all where, join, like, family etc that exist on codeigniter's quiry builder.
+
+ **Parameters**
+ 
+ 1. `$fieldToOrder` = string REQUIRED. Which columns to make ordering.
+ 2. `$where` = string|array OPTIONAL. sql string or key-value paired array.
+ 2. `$fieldToSelect` = string|array OPTIONAL. Columns to select. Select all column if not specified.
+ 3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+
+**Return**
+
+Single array key-value paired if found, EMPTY otherwise
+
+```Php
+// get the last data and include all column desc by id 
+$fieldToOrder = 'id';
+$this->model_app->getLastData( $fieldToOrder );
+
+ -----------------------or---------------------------------
+ 
+// get the last data and select only name, email column desc by id 
+$table ='users_contact';
+$fieldToOrder = 'id';
+$fieldToSelect = 'name, email';
+$this->model_app->getLastData( $fieldToOrder, $field, $table );
+
+ -----------------------or---------------------------------
+ 
+// get the last data using condition column desc by id 
+$fieldToOrder = 'id';
+$where = ['email' => 'norlihazmey89@gmail.com' ];
+$this->model_app->getLastData( $fieldToOrder, $where );
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
