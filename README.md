@@ -29,8 +29,8 @@ Must be noted that, reuseable code already defined and created inside main model
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-// requiring base class
-require APPPATH.'/models/Model_app.php';
+// requiring once the base class
+require_once APPPATH.'/models/Model_app.php';
 
 // extend the base class
 class User_model extends Model_app {
