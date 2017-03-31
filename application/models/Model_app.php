@@ -483,6 +483,24 @@ class Model_app extends CI_Model {
 
     private function complexQueries ( $where = false, $fields = false, $table = false, $join = false, $orderBy = false, $groupBy = false, $limit = false ) {
 
+        $all_rows = 'get_all_rows';
+        $specified_row = 'get_specified_row';
+
+        $caller = debug_backtrace(2);
+
+        $flagExist = array_search( $all_rows, array_column( $caller, 'function' ) );
+
+        if ( !$flagExist ) {
+
+            $flagExist = array_search( $specified_row, array_column( $caller, 'function' ) );
+
+            if ( $flagExist ) {
+
+                if ( !$where )
+                    throw new InvalidArgumentException( "Parameter is missing. First parameter is required : \$where condition" );                
+            }
+        }
+        
         if ( $fields ) {
             $this->db->select( $fields );
         } else {
@@ -576,7 +594,7 @@ class Model_app extends CI_Model {
         if ( !$tableToUpdate )
             $this->db->update( $this->table, $columnToUpdate );
         else {
-            $this->db->update( $table, $columnToUpdate );
+            $this->db->update( $tableToUpdate, $columnToUpdate );
         }       
 
         if ( $this->db->affected_rows() > 0) {
@@ -621,7 +639,7 @@ class Model_app extends CI_Model {
         if ( !$tableToUpdate )
             $update = $this->db->update_batch( $this->table, $columnToUpdate, $usingCondition );
         else {
-            $update = $this->db->update_batch( $table, $columnToUpdate, $usingCondition );
+            $update = $this->db->update_batch( $tableToUpdate, $columnToUpdate, $usingCondition );
         }       
 
         if ( $update > 0 ) {

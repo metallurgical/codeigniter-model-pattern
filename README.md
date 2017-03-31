@@ -459,13 +459,13 @@ Array collection. Collection of dataset coming/fetching from database's table wi
      $this->user_model->get_all_rows( false, false, false, false, false, false, $limit );
 ```
 
-### h) get_specified_row( [ $where, $fields, $table, $join, $orderBy, $groupBy, $limit ] )
+### h) get_specified_row( $where[ , $fields, $table, $join, $orderBy, $groupBy, $limit ] )
 --------
 Get ONLY one row from database's table. This method accept various sql keyword to perform any database operation. You can either use all where, join, like, family etc that exist on codeigniter's quiry builder. 
 
  **Parameters**
  
- - All parameters inside @get_all_rows() method are availables here.
+ - All parameters inside @get_all_rows() method are availables here except the first parameter($where) is required, the rest is optional
 
 **Return**
 
