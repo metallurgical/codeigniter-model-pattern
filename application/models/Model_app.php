@@ -60,10 +60,12 @@ class Model_app extends CI_Model {
         }
         
         if ( $this->db->affected_rows() > 0 ) {
-            return $this->db->insert_id();
+
+            if ( $this->db->insert_id() ) return $this->db->insert_id();
+            else return TRUE;
 
         } else {
-            $flag = false;
+            $flag = FALSE;
             return $flag;
         }       
         

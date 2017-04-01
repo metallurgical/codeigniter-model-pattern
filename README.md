@@ -12,7 +12,7 @@ This is a repositories pattern for Codeigniter's Model. All the reuseable functi
 
 Installion are quite easy as following :
 
- 1. Download latest release **v1.2.0** from `release` tab or click [here](https://github.com/metallurgical/codeigniter-model-pattern/releases/tag/v1.2.0).
+ 1. Download latest release **v1.2.1** from `release` tab or click [here](https://github.com/metallurgical/codeigniter-model-pattern/releases/tag/v1.2.1).
  2. After extracting the archive, it should have 2 folders inside `applications` which are `models` and `traits`
  3. Copy all the files inside `models` folder and paste it in your project's `models` folder.
  4. Create `traits` folder inside `application` folder from your project directory.
@@ -111,7 +111,7 @@ Insert data into table
 
 **Return**
 
-If success will return last inserted ID, FALSE otherwise 
+If success, will return last inserted ID, ONLY if the inserted table have an Inceremented ID or will return TRUE if an Incremented ID wasn't existed, FALSE otherwise. Must be noted that, in PHP TRUE also are equal to 1. If the inserted table didn't have an Incremented ID, but the result is return 1,then it mean TRUE. 
 
 ```Php
 // insert into users table without specify table's name
