@@ -12,7 +12,7 @@ This is a repositories pattern for Codeigniter's Model. All the reuseable functi
 
 Installion are quite easy as following :
 
- 1. Download latest release **v1.1.0** from `release` tab or click [here](https://github.com/metallurgical/codeigniter-model-pattern/releases/tag/v1.1.0).
+ 1. Download latest release **v1.2.0** from `release` tab or click [here](https://github.com/metallurgical/codeigniter-model-pattern/releases/tag/v1.2.0).
  2. After extracting the archive, it should have 2 folders inside `applications` which are `models` and `traits`
  3. Copy all the files inside `models` folder and paste it in your project's `models` folder.
  4. Create `traits` folder inside `application` folder from your project directory.
