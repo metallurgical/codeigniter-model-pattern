@@ -35,7 +35,7 @@ require_once APPPATH.'/models/Model_app.php';
 // extend the base class
 class User_model extends Model_app {
 
-	// create protected property, this mainly used for
+    // create protected property, this mainly used for
     // table operation. So, be sure to put database table's name
     // for each model
     protected $table = 'users';
@@ -347,116 +347,116 @@ Array collection. Collection of dataset coming/fetching from database's table wi
 // Example 1 : Using 1st parameter = WHERE and LIKE condition
 // Availables where condition can be used is, where, where_in, or_where_in, where_not_in, or_where_not_in,or_where, having, or_having, like, like_before, like_after, or_like, or_like_before, or_like_after, not_like, not_like_before, not_like_after, or_not_like, or_not_like_before, or_not_like_after
       
-     $where = array(
-            'where' => array('id !=' => 1, 'email =' => 'emi@emi.com' ),
-            //'where_in' => array( 'id'=> [1, 2], 'email' => ['admin@admin.com'] ),
-            //'or_where_in' => array( 'id'=> [1, 2], 'email' => ['admin@admin.com'] ),
-            //'where_not_in' => array( 'id'=> [1, 2], 'email' => ['admin@admin.com'] ),
-            //'or_where_not_in' => array( 'id'=> [1, 2], 'email' => ['admin@admin.com'] ),       
-            //'or_where' => array('id !=' => 1, 'email =' => 'emi@emi.com' ),
-            //'having' => array('id !=' => 1, 'email =' => 'emi@emi.com' ),
-            //'or_having' => array('id !=' => 1, 'email =' => 'emi@emi.com' ),
-            //'like' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
-            //'like_before' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
-            //'like_after' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
-            //'or_like' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
-            //'or_like_before' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
-            //'or_like_after' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
-            //'not_like' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
-            //'not_like_before' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
-            //'not_like_after' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
-            //'or_not_like' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
-            //'or_not_like_before' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
-            //'or_not_like_after' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
-          );
-     $this->user_model->get_all_rows($where); // without specified table name or
-     $table = "users";
-     $this->user_model->get_all_rows($where, false, $table);
+$where = array(
+    'where' => array('id !=' => 1, 'email =' => 'emi@emi.com' ),
+    //'where_in' => array( 'id'=> [1, 2], 'email' => ['admin@admin.com'] ),
+    //'or_where_in' => array( 'id'=> [1, 2], 'email' => ['admin@admin.com'] ),
+    //'where_not_in' => array( 'id'=> [1, 2], 'email' => ['admin@admin.com'] ),
+    //'or_where_not_in' => array( 'id'=> [1, 2], 'email' => ['admin@admin.com'] ),       
+    //'or_where' => array('id !=' => 1, 'email =' => 'emi@emi.com' ),
+    //'having' => array('id !=' => 1, 'email =' => 'emi@emi.com' ),
+    //'or_having' => array('id !=' => 1, 'email =' => 'emi@emi.com' ),
+    //'like' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
+    //'like_before' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
+    //'like_after' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
+    //'or_like' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
+    //'or_like_before' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
+    //'or_like_after' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
+    //'not_like' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
+    //'not_like_before' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
+    //'not_like_after' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
+    //'or_not_like' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
+    //'or_not_like_before' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
+    //'or_not_like_after' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
+  );
+$this->user_model->get_all_rows($where); // without specified table name or
+$table = "users";
+$this->user_model->get_all_rows($where, false, $table);
       
 -----------------------or---------------------------------
 
 
 // Example 2 : Using 2nd paramter = Select all fields or certain fields
-      $fields = 'name, email'; // using string or
-      $fields = array( 'name','email'); // using index array if not provided, then select * is presumed
-      $this->user_model->get_all_rows( false, $fields );
+$fields = 'name, email'; // using string or
+$fields = array( 'name','email'); // using index array if not provided, then select * is presumed
+$this->user_model->get_all_rows( false, $fields );
       
 -----------------------or---------------------------------
 
 
 // Example 3 : Using 3rd parameter = table name
-      $this->user_model->get_all_rows(); // this will select all the data inside user model's table if table did not provided OR
-      $table = "users";
-      $this->user_model->get_all_rows( false, false, $table);
+$this->user_model->get_all_rows(); // this will select all the data inside user model's table if table did not provided OR
+$table = "users";
+$this->user_model->get_all_rows( false, false, $table);
      
 -----------------------or---------------------------------
 
 
 // Example 4 : Using 4th parameter = join single or multiple
 // Available join are inner, left, right, left outer, right outer, join, outer, inner
-       $join = array(
-              // single table on particular join
-                'join' => array( 'users_groups' => 'users.id = users_groups.user_id' ),
-                'inner' => array( 'users_groups' => 'users.id = users_groups.user_id'),
-                'left' => array( 'users_groups' => 'users.id = users_groups.user_id' ),
-                'right' => array( 'users_groups' => 'users.id = users_groups.user_id'),
-                'outer' => array( 'users_groups' => 'users.id = users_groups.user_id' ),
-                'left outer' => array( 'users_groups' => 'users.id = users_groups.user_id'),
-                'right outer' => array( 'users_groups' => 'users.id = users_groups.user_id' ),
-             // multiple table on particular join
-                 'join' => array( 
-                             'groups' => 'users_groups.user_id = groups.id',
-                             'users_groups' => 'users.id = users_groups.user_id' 
-                         ),
-                'inner' => array( 
-                             'groups' => 'users_groups.user_id = groups.id',
-                             'users_groups' => 'users.id = users_groups.user_id' 
-                         ),
-                'left' => array( 
-                             'groups' => 'users_groups.user_id = groups.id',
-                             'users_groups' => 'users.id = users_groups.user_id' 
-                         ),
-                'right' => array( 
-                             'groups' => 'users_groups.user_id = groups.id',
-                             'users_groups' => 'users.id = users_groups.user_id' 
-                         ),
-                'outer' => array( 
-                             'groups' => 'users_groups.user_id = groups.id',
-                             'users_groups' => 'users.id = users_groups.user_id' 
-                         ),
-                'left outer' => array( 
-                             'groups' => 'users_groups.user_id = groups.id',
-                             'users_groups' => 'users.id = users_groups.user_id' 
-                         ),
-                'right outer' => array( 
-                             'groups' => 'users_groups.user_id = groups.id',
-                             'users_groups' => 'users.id = users_groups.user_id' 
-                         ),
-                         
-     );
+$join = array(
+     // single table on particular join
+	'join' => array( 'users_groups' => 'users.id = users_groups.user_id' ),
+	'inner' => array( 'users_groups' => 'users.id = users_groups.user_id'),
+	'left' => array( 'users_groups' => 'users.id = users_groups.user_id' ),
+	'right' => array( 'users_groups' => 'users.id = users_groups.user_id'),
+	'outer' => array( 'users_groups' => 'users.id = users_groups.user_id' ),
+	'left outer' => array( 'users_groups' => 'users.id = users_groups.user_id'),
+	'right outer' => array( 'users_groups' => 'users.id = users_groups.user_id' ),
+     // multiple table on particular join
+	 'join' => array( 
+		     'groups' => 'users_groups.user_id = groups.id',
+		     'users_groups' => 'users.id = users_groups.user_id' 
+		 ),
+	'inner' => array( 
+		     'groups' => 'users_groups.user_id = groups.id',
+		     'users_groups' => 'users.id = users_groups.user_id' 
+		 ),
+	'left' => array( 
+		     'groups' => 'users_groups.user_id = groups.id',
+		     'users_groups' => 'users.id = users_groups.user_id' 
+		 ),
+	'right' => array( 
+		     'groups' => 'users_groups.user_id = groups.id',
+		     'users_groups' => 'users.id = users_groups.user_id' 
+		 ),
+	'outer' => array( 
+		     'groups' => 'users_groups.user_id = groups.id',
+		     'users_groups' => 'users.id = users_groups.user_id' 
+		 ),
+	'left outer' => array( 
+		     'groups' => 'users_groups.user_id = groups.id',
+		     'users_groups' => 'users.id = users_groups.user_id' 
+		 ),
+	'right outer' => array( 
+		     'groups' => 'users_groups.user_id = groups.id',
+		     'users_groups' => 'users.id = users_groups.user_id' 
+		 ),
+
+);
      
 -----------------------or---------------------------------
 
 
 // Example 5 : Using 5th parameter = Order by result
-      $orderBy = 'name asc, id desc'; // or 
-      $orderBy = array( 'name' => 'asc', 'id' => 'desc' );
-      $this->user_model->get_all_rows( false, false, false, false, $orderBy );
+$orderBy = 'name asc, id desc'; // or 
+$orderBy = array( 'name' => 'asc', 'id' => 'desc' );
+$this->user_model->get_all_rows( false, false, false, false, $orderBy );
      
 -----------------------or---------------------------------
 
 
 // Example 6 : Using 6th parameter = group by result
-      $groupBy = 'name'; // or $groupBy = array( 'name', 'id' );
-      $this->user_model->get_all_rows( false, false, false, false, false, $groupBy );
+$groupBy = 'name'; // or $groupBy = array( 'name', 'id' );
+$this->user_model->get_all_rows( false, false, false, false, false, $groupBy );
      
 -----------------------or---------------------------------
 
 
 // Example 7 : Using 7th parameter = limit the result
-     $limit = '20'; // limit only
-     $limit = [10 => 20]; // limit and offset, key is a limit, values is an offset
-     $this->user_model->get_all_rows( false, false, false, false, false, false, $limit );
+$limit = '20'; // limit only
+$limit = [10 => 20]; // limit and offset, key is a limit, values is an offset
+$this->user_model->get_all_rows( false, false, false, false, false, false, $limit );
 ```
 
 ### h) get_specified_row( $where[ , $fields, $table, $join, $orderBy, $groupBy, $limit ] )
