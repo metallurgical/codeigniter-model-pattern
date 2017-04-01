@@ -1,11 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-require APPPATH.'/traits/BaseQueryBuilder.php';
+require_once APPPATH . '/traits/BaseQueryBuilder.php';
+require_once APPPATH . '/traits/ExceptionThrow.php';
 
 class Model_app extends CI_Model {
 
-    use BaseQueryBuilder;
+    use BaseQueryBuilder, ExceptionThrow;
     /**
      * Table's name inside databsae for each model
      * @var [type]
@@ -50,6 +51,8 @@ class Model_app extends CI_Model {
      */
     function insert ( $arrayData, $table = false ) {
 
+        if ( empty( $arrayData ) ) $this->InvalidArgExceptionThrow( 1 );
+
         if ( !$table )
             $this->db->insert( $this->table, $arrayData );
         else{
@@ -91,6 +94,8 @@ class Model_app extends CI_Model {
      */
     function insert_batch ( $arrayData, $table = false ) {
 
+        if ( empty( $arrayData ) ) $this->InvalidArgExceptionThrow( 1 );
+
         if ( !$table )
             $insert = $this->db->insert_batch( $this->table, $arrayData );
         else
@@ -125,6 +130,8 @@ class Model_app extends CI_Model {
      *     $this->model_app->delete( $where, $table )
      */
     public function delete ( $where, $table = false ) {
+
+        if ( empty( $where ) ) $this->InvalidArgExceptionThrow( 1 );
 
         if ( !$table )
             $this->db->delete( $this->table );
@@ -209,6 +216,8 @@ class Model_app extends CI_Model {
      *      $this->model_app->get_last_data( $fieldToOrder, $field, $table );
      */     
     function get_last_data( $fieldToOrder, $where = false, $fieldToSelect = false, $table = false ) {
+
+        if ( empty( $fieldToOrder ) ) $this->InvalidArgExceptionThrow( 1 );
 
         if ( $fieldToSelect ) {
              $column = $fieldToSelect;
@@ -588,7 +597,10 @@ class Model_app extends CI_Model {
      */ 
     function update ( $columnToUpdate, $usingCondition, $tableToUpdate =  false )
     {
-        
+
+        if ( empty( $columnToUpdate ) && empty( $usingCondition ) ) $this->InvalidArgExceptionThrow( 2 );
+        else if ( empty( $columnToUpdate ) || empty( $usingCondition ) ) $this->InvalidArgExceptionThrow( 1 );
+
         $this->db->where( $usingCondition );
 
         if ( !$tableToUpdate )
@@ -636,6 +648,9 @@ class Model_app extends CI_Model {
      */    
     function update_batch ( $columnToUpdate, $usingCondition, $tableToUpdate =  false ) {  
 
+        if ( empty( $columnToUpdate ) && empty( $usingCondition ) ) $this->InvalidArgExceptionThrow( 2 );
+        else if ( empty( $columnToUpdate ) || empty( $usingCondition ) ) $this->InvalidArgExceptionThrow( 1 );
+
         if ( !$tableToUpdate )
             $update = $this->db->update_batch( $this->table, $columnToUpdate, $usingCondition );
         else {
@@ -669,6 +684,8 @@ class Model_app extends CI_Model {
      * $this->model_app->replace( $data, $tableName );
      */ 
     function replace ( $data, $table = false ) {
+
+        if ( empty( $data ) ) $this->InvalidArgExceptionThrow( 1 );
 
         if ( !$table )
             $query = $this->db->replace( $this->table, $data); 
@@ -740,6 +757,8 @@ class Model_app extends CI_Model {
      */
     function max ( $fields, $where = false, $table = false, $join = false ) {
 
+        if ( empty( $fields ) ) $this->InvalidArgExceptionThrow( 1 );
+
         $this->db->select_max( $fields );
 
         if ( $where )
@@ -774,6 +793,8 @@ class Model_app extends CI_Model {
      *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
     function min ( $fields, $where = false, $table = false, $join = false  ) {
+
+        if ( empty( $fields ) ) $this->InvalidArgExceptionThrow( 1 );
 
         $this->db->select_min( $fields );
 
@@ -810,6 +831,8 @@ class Model_app extends CI_Model {
      */
     function avg ( $fields, $where = false, $table = false, $join = false  ) {
 
+        if ( empty( $fields ) ) $this->InvalidArgExceptionThrow( 1 );
+
         $this->db->select_avg( $fields );
 
         if ( $where )
@@ -844,6 +867,8 @@ class Model_app extends CI_Model {
      *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
     function sum ( $fields, $where = false, $table = false, $join = false  ) {
+
+        if ( empty( $fields ) ) $this->InvalidArgExceptionThrow( 1 );
 
         $this->db->select_sum( $fields );
 
@@ -909,7 +934,9 @@ class Model_app extends CI_Model {
      *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
     function where ( $arrValue, $table = false, $join = false  ) {
-         
+        
+        if ( empty( $arrValue ) ) $this->InvalidArgExceptionThrow( 1 );
+
         if ( $join ) $this->joinTable( $join );
 
         $this->db->where( $arrValue );
@@ -938,6 +965,8 @@ class Model_app extends CI_Model {
      */
     function or_where ( $arrValue, $table = false, $join = false  ) {
          
+        if ( empty( $arrValue ) ) $this->InvalidArgExceptionThrow( 1 );
+         
         if ( $join ) $this->joinTable( $join );
 
         $this->db->or_where( $arrValue );
@@ -965,7 +994,9 @@ class Model_app extends CI_Model {
      *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
     function having ( $arrValue, $table = false, $join = false  ) {
-         
+        
+        if ( empty( $arrValue ) ) $this->InvalidArgExceptionThrow( 1 );
+
         if ( $join ) $this->joinTable( $join );
 
         $this->db->having( $arrValue );
@@ -994,6 +1025,8 @@ class Model_app extends CI_Model {
      */
     function or_having ( $arrValue, $table = false, $join = false  ) {
          
+        if ( empty( $arrValue ) ) $this->InvalidArgExceptionThrow( 1 );
+
         if ( $join ) $this->joinTable( $join );
 
         $this->db->or_having( $arrValue );
@@ -1021,6 +1054,8 @@ class Model_app extends CI_Model {
      *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
     function where_in ( $arrValue, $table = false, $join = false  ) {        
+
+        if ( empty( $arrValue ) ) $this->InvalidArgExceptionThrow( 1 );
 
         if ( $join ) $this->joinTable( $join );
 
@@ -1052,6 +1087,8 @@ class Model_app extends CI_Model {
      */
     function or_where_in ( $arrValue, $table = false, $join = false  ) {        
 
+        if ( empty( $arrValue ) ) $this->InvalidArgExceptionThrow( 1 );
+
         if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
@@ -1082,6 +1119,8 @@ class Model_app extends CI_Model {
      */
     function where_not_in ( $arrValue, $table = false, $join = false  ) {        
 
+        if ( empty( $arrValue ) ) $this->InvalidArgExceptionThrow( 1 );
+
         if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
@@ -1111,6 +1150,8 @@ class Model_app extends CI_Model {
      *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
     function or_where_not_in ( $arrValue, $table = false, $join = false  ) {        
+
+        if ( empty( $arrValue ) ) $this->InvalidArgExceptionThrow( 1 );
 
         if ( $join ) $this->joinTable( $join );
 
@@ -1143,6 +1184,8 @@ class Model_app extends CI_Model {
      */
     function like ( $arrValue, $table = false, $join = false  ) {        
 
+        if ( empty( $arrValue ) ) $this->InvalidArgExceptionThrow( 1 );
+
         if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
@@ -1173,6 +1216,8 @@ class Model_app extends CI_Model {
      *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
     function like_before ( $arrValue, $table = false, $join = false  ) {        
+
+        if ( empty( $arrValue ) ) $this->InvalidArgExceptionThrow( 1 );
 
         if ( $join ) $this->joinTable( $join );
 
@@ -1205,6 +1250,8 @@ class Model_app extends CI_Model {
      */
     function like_after ( $arrValue, $table = false, $join = false  ) {        
 
+        if ( empty( $arrValue ) ) $this->InvalidArgExceptionThrow( 1 );
+
         if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
@@ -1235,6 +1282,8 @@ class Model_app extends CI_Model {
      *     The join implementation are same with @get_all_rows && @get_specified_row() method
      */
     function or_like ( $arrValue, $table = false, $join = false  ) {        
+
+        if ( empty( $arrValue ) ) $this->InvalidArgExceptionThrow( 1 );
 
         if ( $join ) $this->joinTable( $join );
 
@@ -1267,6 +1316,8 @@ class Model_app extends CI_Model {
      */
     function or_like_before ( $arrValue, $table = false, $join = false  ) {        
 
+        if ( empty( $arrValue ) ) $this->InvalidArgExceptionThrow( 1 );
+        
         if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
@@ -1298,6 +1349,8 @@ class Model_app extends CI_Model {
      */
     function or_like_after ( $arrValue, $table = false, $join = false  ) {        
 
+        if ( empty( $arrValue ) ) $this->InvalidArgExceptionThrow( 1 );
+        
         if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
@@ -1329,6 +1382,8 @@ class Model_app extends CI_Model {
      */
     function not_like ( $arrValue, $table = false, $join = false  ) {        
 
+        if ( empty( $arrValue ) ) $this->InvalidArgExceptionThrow( 1 );
+        
         if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
@@ -1360,6 +1415,8 @@ class Model_app extends CI_Model {
      */
     function not_like_before ( $arrValue, $table = false, $join = false  ) {        
 
+        if ( empty( $arrValue ) ) $this->InvalidArgExceptionThrow( 1 );
+        
         if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
@@ -1391,6 +1448,8 @@ class Model_app extends CI_Model {
      */
     function not_like_after ( $arrValue, $table = false, $join = false  ) {        
 
+        if ( empty( $arrValue ) ) $this->InvalidArgExceptionThrow( 1 );
+        
         if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
@@ -1422,6 +1481,8 @@ class Model_app extends CI_Model {
      */
     function or_not_like ( $arrValue, $table = false, $join = false  ) {        
 
+        if ( empty( $arrValue ) ) $this->InvalidArgExceptionThrow( 1 );
+        
         if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
@@ -1453,6 +1514,8 @@ class Model_app extends CI_Model {
      */
     function or_not_like_before ( $arrValue, $table = false, $join = false  ) {        
 
+        if ( empty( $arrValue ) ) $this->InvalidArgExceptionThrow( 1 );
+        
         if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
@@ -1484,6 +1547,8 @@ class Model_app extends CI_Model {
      */
     function or_not_like_after ( $arrValue, $table = false, $join = false ) {        
 
+        if ( empty( $arrValue ) ) $this->InvalidArgExceptionThrow( 1 );
+        
         if ( $join ) $this->joinTable( $join );
 
         foreach( $arrValue as $key => $value ) {    
