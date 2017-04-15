@@ -168,7 +168,7 @@ Delete data from table either single or multiple table
 
  **Parameters**
  
- 1. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See @get_all_rows implementation).
+ 1. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See **@get_all_rows** implementation).
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
 
 **Return**
@@ -241,10 +241,10 @@ Get the last data from table
  **Parameters**
  
  1. `$fieldToOrder` = string REQUIRED. Which columns to make ordering.
- 2. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See @get_all_rows implementation).
+ 2. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See **@get_all_rows** implementation).
  2. `$fieldToSelect` = string|array OPTIONAL. Columns to select. Select all column if not specified.
  3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 4. `$join` = string OPTIONAL. See @get_all_rows implementation.
+ 4. `$join` = string OPTIONAL. See **@get_all_rows** implementation.
 
 **Return**
 
@@ -466,7 +466,7 @@ Get ONLY one row from database's table. This method accept various sql keyword t
 
  **Parameters**
  
- - All parameters inside @get_all_rows() method are availables here except the first parameter($where) is required, the rest is optional
+ - All parameters inside **@get_all_rows**() method are availables here except the first parameter($where) is required, the rest is optional
 
 **Return**
 
@@ -480,7 +480,7 @@ Update data inside database's table
  **Parameters**
  
  1. `$columnToUpdate` = array REQUIRED. Key-value paired array.
- 2. `$usingCondition` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See @get_all_rows implementation).
+ 2. `$usingCondition` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See **@get_all_rows** implementation).
  3. `$tableToUpdate` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
 
 **Return**
@@ -563,9 +563,9 @@ Get maximun value from certain field/column
  **Parameters**
  
  1. `$fields` = string REQUIRED. Field/column's name
- 2. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See @get_all_rows implementation).
+ 2. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See **@get_all_rows** implementation).
  3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 4. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 4. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -599,9 +599,9 @@ Get minumun value from certain field/column
  **Parameters**
  
  1. `$fields` = string REQUIRED. Field/column's name
- 2. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See @get_all_rows implementation).
+ 2. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See **@get_all_rows** implementation).
  3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 4. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 4. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -635,9 +635,9 @@ Get average value from certain field/column
  **Parameters**
  
  1. `$fields` = string REQUIRED. Field/column's name
- 2. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See @get_all_rows implementation).
+ 2. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See **@get_all_rows** implementation).
  3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 4. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 4. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -671,9 +671,9 @@ Get sum of value from certain field/column
  **Parameters**
  
  1. `$fields` = string REQUIRED. Field/column's name
- 2. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See @get_all_rows implementation).
+ 2. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See **@get_all_rows** implementation).
  3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 4. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 4. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -706,9 +706,9 @@ Get average value from certain field/column
 
  **Parameters** 
  
- 1. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See @get_all_rows implementation).
+ 1. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See ****@get_all_rows**** implementation).
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 3. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -740,7 +740,7 @@ Get result set of data with AND condition
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 3. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -767,7 +767,7 @@ Get result set of data with OR condition
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 3. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -794,7 +794,7 @@ Get result set of data with AND condition using having. Identical to @where meth
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 3. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -821,7 +821,7 @@ Get result set of data with OR condition using having. Identical to @or_where me
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 3. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -848,7 +848,7 @@ Get result set of data with AND condition using where in which accept an array a
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 3. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -875,7 +875,7 @@ Get result set of data with OR condition using where in which accept an array as
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 3. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -902,7 +902,7 @@ Get result set of data with AND condition using where not in which accept an arr
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 3. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -929,7 +929,7 @@ Get result set of data with OR condition using where not in which accept an arra
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 3. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -957,7 +957,7 @@ Get result set of data with AND condition using like clause with placing % both 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 3. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -984,7 +984,7 @@ Get result set of data with AND condition using like clause with placing % only 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 3. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -1011,7 +1011,7 @@ Get result set of data with AND condition using like clause with placing % only 
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 3. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -1038,7 +1038,7 @@ Get result set of data with OR condition using like clause with placing % both l
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 3. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -1065,7 +1065,7 @@ Get result set of data with OR condition using like clause with placing % only l
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 3. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -1092,7 +1092,7 @@ Get result set of data with OR condition using like clause with placing % only r
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 3. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -1119,7 +1119,7 @@ Get result set of data with AND condition using not like clause with placing % b
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 3. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -1146,7 +1146,7 @@ Get result set of data with AND condition using not like clause with placing % o
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 3. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -1173,7 +1173,7 @@ Get result set of data with AND condition using not like clause with placing % o
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 3. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -1200,7 +1200,7 @@ Get result set of data with OR condition using not like clause with placing % bo
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 3. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -1227,7 +1227,7 @@ Get result set of data with OR condition using not like clause with placing % on
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 3. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
@@ -1254,7 +1254,7 @@ Get result set of data with OR condition using not like clause with placing % on
  
  1. `$arrValue` = string|array REQUIRED. Key-value paired array.
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
+ 3. `$join` = array OPTIONAL. Implementation could be found on **@get_all_rows** and @get_specified_row method. The implementation are completely same.
 
 **Return**
 
