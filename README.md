@@ -347,7 +347,7 @@ Array collection. Collection of dataset coming/fetching from database's table wi
 ```Php
 // Example 1 : Using 1st parameter = WHERE and LIKE condition
 // Availables where condition can be used is, where, where_in, or_where_in, where_not_in, or_where_not_in,or_where, having, or_having, like, like_before, like_after, or_like, or_like_before, or_like_after, not_like, not_like_before, not_like_after, or_not_like, or_not_like_before, or_not_like_after
-      
+(Flexible Where - Multidimensional Associative array)    
 $where = array(
     'where' => array('id !=' => 1, 'email =' => 'emi@emi.com' ),
     //'where_in' => array( 'id'=> [1, 2], 'email' => ['admin@admin.com'] ),
@@ -370,6 +370,18 @@ $where = array(
     //'or_not_like_before' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
     //'or_not_like_after' => array('name' => 'emi', 'email' => 'emi@emi.com' ),
   );
+
+or 
+
+(Key-Value paired - Single Associative array)
+$where = array('name' => 'emi', 'email' => 'emi@emi.com' )
+
+or 
+
+(String - SQL statement)
+$where = 'name = "emi" and email = "emi@emi.com"';
+
+
 $this->user_model->get_all_rows($where); // without specified table name or
 $table = "users";
 $this->user_model->get_all_rows($where, false, $table);
