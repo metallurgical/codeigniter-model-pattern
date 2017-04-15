@@ -244,7 +244,7 @@ Get the last data from table
  2. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See **@get_all_rows** implementation).
  2. `$fieldToSelect` = string|array OPTIONAL. Columns to select. Select all column if not specified.
  3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
- 4. `$join` = string OPTIONAL. See **@get_all_rows** implementation.
+ 4. `$join` = array OPTIONAL. See **@get_all_rows** implementation.
 
 **Return**
 
