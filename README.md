@@ -168,7 +168,7 @@ Delete data from table either single or multiple table
 
  **Parameters**
  
- 1. `$where` = array REQUIRED. Key(column's name) value(column's value) paired array
+ 1. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See @get_all_rows implementation).
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
 
 **Return**
@@ -234,16 +234,17 @@ $table ='users_contact';
 $this->user_model->truncate( $table );
 ```
 
-### f) get_last_data( $fieldToOrder [, $where, $fieldToSelect, $table] )
+### f) get_last_data( $fieldToOrder [, $where, $fieldToSelect, $table, $join] )
 --------
 Get the last data from table
 
  **Parameters**
  
  1. `$fieldToOrder` = string REQUIRED. Which columns to make ordering.
- 2. `$where` = string|array OPTIONAL. sql string or key-value paired array.
+ 2. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See @get_all_rows implementation).
  2. `$fieldToSelect` = string|array OPTIONAL. Columns to select. Select all column if not specified.
  3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
+ 4. `$join` = string OPTIONAL. See @get_all_rows implementation.
 
 **Return**
 
@@ -276,7 +277,7 @@ Get data more than one rows from database's table. This method accept various sq
 
  **Parameters**
  
- 1. `$where` = array OPTIONAL. Perform various where condition on single query. Availables where condition can be used are:
+ 1. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition .Perform various where condition on single query. Availables where condition can be used are:
     - where :
       - `array( 'where' => [ 'id !=' => 1, 'email =' => 'emi@emi.com' ] )`
     - where_in
@@ -479,7 +480,7 @@ Update data inside database's table
  **Parameters**
  
  1. `$columnToUpdate` = array REQUIRED. Key-value paired array.
- 2. `$usingCondition` = string|array REQUIRED. sql string or key-value paired array.
+ 2. `$usingCondition` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See @get_all_rows implementation).
  3. `$tableToUpdate` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
 
 **Return**
@@ -488,11 +489,9 @@ Return 1 if success, 2 if no delete occured, 3 if delete operation can't be done
 
 ```Php
 $columnToUpdate = array(
-	array(
 		'title' => 'My title',
 		'name' => 'My Name',
 		'date' => 'My date'
-	)
 );
 
 $usingCondition = ['id' => 1'];
@@ -564,7 +563,7 @@ Get maximun value from certain field/column
  **Parameters**
  
  1. `$fields` = string REQUIRED. Field/column's name
- 2. `$where` = string|array OPTIONAL. Key-value paired array.
+ 2. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See @get_all_rows implementation).
  3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
  4. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
@@ -600,7 +599,7 @@ Get minumun value from certain field/column
  **Parameters**
  
  1. `$fields` = string REQUIRED. Field/column's name
- 2. `$where` = string|array OPTIONAL. Key-value paired array.
+ 2. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See @get_all_rows implementation).
  3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
  4. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
@@ -636,7 +635,7 @@ Get average value from certain field/column
  **Parameters**
  
  1. `$fields` = string REQUIRED. Field/column's name
- 2. `$where` = string|array OPTIONAL. Key-value paired array.
+ 2. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See @get_all_rows implementation).
  3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
  4. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
@@ -672,7 +671,7 @@ Get sum of value from certain field/column
  **Parameters**
  
  1. `$fields` = string REQUIRED. Field/column's name
- 2. `$where` = string|array OPTIONAL. Key-value paired array.
+ 2. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See @get_all_rows implementation).
  3. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
  4. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 
@@ -707,7 +706,7 @@ Get average value from certain field/column
 
  **Parameters** 
  
- 1. `$where` = string|array OPTIONAL. Key-value paired array.
+ 1. `$where` = string|array OPTIONAL. Sql string or Key-value paired array or Flexible where condition(See @get_all_rows implementation).
  2. `$table` = string OPTIONAL. Table's name. If you didn't specified, it'll look at `$table` property defined inside the class's model as default.
  3. `$join` = array OPTIONAL. Implementation could be found on @get_all_rows and @get_specified_row method. The implementation are completely same.
 

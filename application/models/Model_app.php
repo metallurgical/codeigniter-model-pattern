@@ -141,7 +141,16 @@ class Model_app extends CI_Model {
             $this->db->delete( $table );
         }
 
-        $this->db->where( $where );
+        if ( $where ) {
+            if ( is_string( $where ) )
+                $this->db->where( $where );
+            else {
+                if ( $this->is_multi_array( $where ) )
+                    $this->whereTrait( $where );
+                else
+                    $this->db->where( $where );
+            }
+        }
         
         if ( $this->db->affected_rows() > 0) {
             // delete && no error
@@ -205,6 +214,18 @@ class Model_app extends CI_Model {
         
     }
     /**
+     * Checking whether array passed in as Where
+     * condition is multi or single array
+     * @param  [type]  $array [description]
+     * @return boolean        [description]
+     */
+    private function is_multi_array ( $array ) {
+        if ( count( $array ) == count( $array, COUNT_RECURSIVE ) )
+            return FALSE;
+        else
+          return TRUE;
+    }
+    /**
      * Get last data insert after insert into database
      * @param  [type]  $uniqueField [description]
      * @param  boolean $fields      [description]
@@ -217,7 +238,7 @@ class Model_app extends CI_Model {
      *      $fieldToSelect = 'name, email';
      *      $this->model_app->get_last_data( $fieldToOrder, $field, $table );
      */     
-    function get_last_data( $fieldToOrder, $where = false, $fieldToSelect = false, $table = false ) {
+    function get_last_data( $fieldToOrder, $where = false, $fieldToSelect = false, $table = false, $join = false ) {
 
         if ( empty( $fieldToOrder ) ) $this->InvalidArgExceptionThrow( 1 );
 
@@ -230,8 +251,17 @@ class Model_app extends CI_Model {
 
         $this->db->select( $column );
 
+        if ( $join ) $this->joinTable( $join );
+
         if ( $where ) {
-            $this->db->where( $where );
+            if ( is_string( $where ) )
+                $this->db->where( $where );
+            else {
+                if ( $this->is_multi_array( $where ) )
+                    $this->whereTrait( $where );
+                else
+                    $this->db->where( $where );
+            }
         }
 
         if ( !$table )
@@ -491,6 +521,25 @@ class Model_app extends CI_Model {
         return $query->row_array(); 
            
     }
+    /**
+     * Traits for where condition, used by relevant method
+     * @param  array  $arrayWhere [description]
+     * @return [type]             [description]
+     */
+    private function whereTrait ( array $arrayWhere ) {
+
+        foreach( $arrayWhere as $key => $value ) {
+
+            if ( in_array( $key, $this->whereCollection ) ) {                        
+                // this will output 
+                // where, where_in, etc........
+                // and autmatically instance of query
+                // inside the BaseQueryBuilderTrait                 
+                $this->{ 'db' . ucfirst( $key ) }( $value );
+            }
+
+        }   
+    }
 
     private function complexQueries ( $where = false, $fields = false, $table = false, $join = false, $orderBy = false, $groupBy = false, $limit = false ) {
 
@@ -524,19 +573,15 @@ class Model_app extends CI_Model {
             $this->db->from( $table );
         } 
 
-        if ( $where ){
-
-           foreach( $where as $key => $value ) {
-
-                if ( in_array( $key, $this->whereCollection ) ) {                        
-                    // this will output 
-                    // where, where_in, etc........
-                    // and autmatically instance of query
-                    // inside the BaseQueryBuilderTrait                 
-                    $this->{ 'db' . ucfirst( $key ) }( $value );
-                }
-
-            }       
+        if ( $where ) {
+            if ( is_string( $where ) )
+                $this->db->where( $where );
+            else {
+                if ( $this->is_multi_array( $where ) )
+                    $this->whereTrait( $where );
+                else
+                    $this->db->where( $where );
+            }
         }
        
         if ( $orderBy ) {
@@ -589,21 +634,28 @@ class Model_app extends CI_Model {
      * @return [type]                 [description]
      * ==========================================
      * Data example :
-     * $columnToUpdate = array(
-     *           array(
+     * $columnToUpdate = array(           
      *                   'title' => 'My title',
      *                   'name' => 'My Name',
      *                   'date' => 'My date'
-     *           )
-     *   );
+     *           );
      */ 
     function update ( $columnToUpdate, $usingCondition, $tableToUpdate =  false )
     {
 
         if ( empty( $columnToUpdate ) && empty( $usingCondition ) ) $this->InvalidArgExceptionThrow( 2 );
         else if ( empty( $columnToUpdate ) || empty( $usingCondition ) ) $this->InvalidArgExceptionThrow( 1 );
-
-        $this->db->where( $usingCondition );
+        
+        if ( $usingCondition ) {
+            if ( is_string( $usingCondition ) )
+                $this->db->where( $usingCondition );
+            else {
+                if ( $this->is_multi_array( $usingCondition ) )
+                    $this->whereTrait( $usingCondition );
+                else
+                    $this->db->where( $usingCondition );
+            }
+        }
 
         if ( !$tableToUpdate )
             $this->db->update( $this->table, $columnToUpdate );
@@ -755,7 +807,7 @@ class Model_app extends CI_Model {
      *     The join implementation are same with @get_all_rows && @get_specified_row() method
      *
      * Example : Using Where
-     *     The join implementation are same with @get_all_rows && @get_specified_row() method
+     *     The where implementation are same with @get_all_rows && @get_specified_row() method
      */
     function max ( $fields, $where = false, $table = false, $join = false ) {
 
@@ -763,8 +815,16 @@ class Model_app extends CI_Model {
 
         $this->db->select_max( $fields );
 
-        if ( $where )
-            $this->db->where( $where );
+        if ( $where ) {
+            if ( is_string( $where ) )
+                $this->db->where( $where );
+            else {
+                if ( $this->is_multi_array( $where ) )
+                    $this->whereTrait( $where );
+                else
+                    $this->db->where( $where );
+            }
+        }
 
         if ( $join ) $this->joinTable( $join );
 
@@ -792,7 +852,7 @@ class Model_app extends CI_Model {
      *     The join implementation are same with @get_all_rows && @get_specified_row() method
      *
      * Example : Using Where
-     *     The join implementation are same with @get_all_rows && @get_specified_row() method
+     *     The where implementation are same with @get_all_rows && @get_specified_row() method
      */
     function min ( $fields, $where = false, $table = false, $join = false  ) {
 
@@ -800,8 +860,16 @@ class Model_app extends CI_Model {
 
         $this->db->select_min( $fields );
 
-        if ( $where )
-            $this->db->where( $where );
+        if ( $where ) {
+            if ( is_string( $where ) )
+                $this->db->where( $where );
+            else {
+                if ( $this->is_multi_array( $where ) )
+                    $this->whereTrait( $where );
+                else
+                    $this->db->where( $where );
+            }
+        }
 
         if ( $join ) $this->joinTable( $join );
 
@@ -829,7 +897,7 @@ class Model_app extends CI_Model {
      *     The join implementation are same with @get_all_rows && @get_specified_row() method
      *
      * Example : Using Where
-     *     The join implementation are same with @get_all_rows && @get_specified_row() method
+     *     The where implementation are same with @get_all_rows && @get_specified_row() method
      */
     function avg ( $fields, $where = false, $table = false, $join = false  ) {
 
@@ -837,8 +905,16 @@ class Model_app extends CI_Model {
 
         $this->db->select_avg( $fields );
 
-        if ( $where )
-            $this->db->where( $where );
+        if ( $where ) {
+            if ( is_string( $where ) )
+                $this->db->where( $where );
+            else {
+                if ( $this->is_multi_array( $where ) )
+                    $this->whereTrait( $where );
+                else
+                    $this->db->where( $where );
+            }
+        }
 
         if ( $join ) $this->joinTable( $join );
 
@@ -866,7 +942,7 @@ class Model_app extends CI_Model {
      *     The join implementation are same with @get_all_rows && @get_specified_row() method
      *
      * Example : Using Where
-     *     The join implementation are same with @get_all_rows && @get_specified_row() method
+     *     The where implementation are same with @get_all_rows && @get_specified_row() method
      */
     function sum ( $fields, $where = false, $table = false, $join = false  ) {
 
@@ -874,8 +950,16 @@ class Model_app extends CI_Model {
 
         $this->db->select_sum( $fields );
 
-        if ( $where )
-            $this->db->where( $where );
+        if ( $where ) {
+            if ( is_string( $where ) )
+                $this->db->where( $where );
+            else {
+                if ( $this->is_multi_array( $where ) )
+                    $this->whereTrait( $where );
+                else
+                    $this->db->where( $where );
+            }
+        }
 
         if ( $join ) $this->joinTable( $join );
 
@@ -903,12 +987,20 @@ class Model_app extends CI_Model {
      *     The join implementation are same with @get_all_rows && @get_specified_row() method
      *
      * Example : Using Where
-     *     The join implementation are same with @get_all_rows && @get_specified_row() method
+     *     The where implementation are same with @get_all_rows && @get_specified_row() method
      */
     function count ( $where = false, $table = false, $join = false  ) {
 
-        if ( $where )
-            $this->db->where( $where );
+        if ( $where ) {
+            if ( is_string( $where ) )
+                $this->db->where( $where );
+            else {
+                if ( $this->is_multi_array( $where ) )
+                    $this->whereTrait( $where );
+                else
+                    $this->db->where( $where );
+            }
+        }
 
         if ( $join ) $this->joinTable( $join );
 
